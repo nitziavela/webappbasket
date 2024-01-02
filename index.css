@@ -1,0 +1,16 @@
+.dropdown:hover > .dropdown-menu,
+.dropend:hover > .dropdown-menu {
+  display: block;
+  margin-top: 0.125;
+  margin-left: 0.125;
+}
+
+.dropend:hover > .dropdown-menu {
+    position: absolute;
+    top: 0;
+    left: 100%;
+  }
+  
+  .dropdown .dropdown-menu {
+    display: none;
+  }
