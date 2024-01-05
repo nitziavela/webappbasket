@@ -33,9 +33,8 @@ if (!isset($_SESSION["id"])) {
           <i class="fa-solid fa-user"></i>&nbsp;Usuarios
           </a>
           <div class="dropdown-menu" aria-labelledby="menuUsuarios">
-            <a class="dropdown-item" href="#"><i class="fa-solid fa-user-plus" style="color: #17e84b;"></i>&nbsp;Agregar</a>
-            <a class="dropdown-item" href="#"><i class="fa-solid fa-address-book" style="color: #005eff;"></i>&nbsp;Consultar</a>
-            <a class="dropdown-item" href="#"><i class="fa-solid fa-user-minus" style="color: #e20808;"></i>&nbsp;Eliminar</a>
+            <a class="dropdown-item" href="views/usuarios/frmUsuarios.php"><i class="fa-solid fa-user-plus" style="color: #17e84b;"></i>&nbsp;Agregar</a>
+            <a class="dropdown-item" href="views/usuarios/consultarUsuarios.php"><i class="fa-solid fa-address-book" style="color: #005eff;"></i>&nbsp;Consultar</a>
           </div>
         </li>
         <?php
@@ -47,10 +46,8 @@ if (!isset($_SESSION["id"])) {
           </a>
 
           <div class="dropdown-menu" aria-labelledby="menuTorneos">
-            <a class="dropdown-item" href="#"><i class="fa-solid fa-user-plus" style="color: #17e84b;"></i>&nbsp;Agregar</a>
-            <a class="dropdown-item" href="#"><i class="fa-solid fa-address-book" style="color: #005eff;"></i>&nbsp;Consultar</a>
-            <a class="dropdown-item" href="#"><i class="fa-solid fa-user-minus" style="color: #e20808;"></i>&nbsp;Eliminar</a>
-          
+            <a class="dropdown-item" href="views/admin/frmTorneos.php"><i class="fa-solid fa-user-plus" style="color: #17e84b;"></i>&nbsp;Agregar</a>
+            <a class="dropdown-item" href="views/admin/readAllTorneos.php"><i class="fa-solid fa-address-book" style="color: #005eff;"></i>&nbsp;Consultar</a>
             <hr class="dropdown-divider">
           <!-- Grupos -->
             <div class="nav-item dropend">
@@ -64,7 +61,7 @@ if (!isset($_SESSION["id"])) {
               </div>
             </div> 
 
-            <!-- Grupos -->
+            <!-- Equipos -->
             <div class="nav-item dropend">
             <hr class="dropdown-divider">
               <a class="nav-link dropdown-toggle" href="#" id="menuEquipos" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -77,7 +74,7 @@ if (!isset($_SESSION["id"])) {
               </div>
             </div>
 
-            <!-- Grupos -->
+            <!-- Jugadores -->
             <div class="nav-item dropend">
               <hr class="dropdown-divider">
               <a class="nav-link dropdown-toggle" href="#" id="menuJugadores" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -91,7 +88,7 @@ if (!isset($_SESSION["id"])) {
               </div>
             </div>
 
-          <!-- Grupos -->
+          <!-- Calendarios -->
           <div class="nav-item dropend">
           <hr class="dropdown-divider">
             <a class="nav-link dropdown-toggle" href="#" id="menuCalendarios" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -79,7 +79,7 @@
             </div>
             <div class="col mb-3">
                 <button type="submit" class="btn btn-primary">Guardar</button>
-                <a href="admin.php" class="btn btn-danger">Cancelar</a>
+                <a href="../../index.php" class="btn btn-danger">Cancelar</a>
             </div>
             </form>
         </div>
