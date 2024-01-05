@@ -6,7 +6,7 @@
     <div class="container text-center text-md-start mt-5">
         <div class="row mt-3">
             <div class="col-md-2 col-lg-2 col-xl mx-auto mb-4">
-                <h6>LOGO AQUÍ</h6>
+                <img src="../../../webappbasket/img/594px-Logo_Uas.svg.png" alt="" width="150">
             </div>
             <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                 <h6 class="text-uppercase fw-bold mb-4">DESARROLLO WEB II</h6>
@@ -18,11 +18,11 @@
             </div>
             <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-4">
                 <h6 class="fw-bold mb-4">CONTACTO</h6>
-                <p>
-                    <i class="fa fa-phone" > +52 6692443633</i>
-                    <i class="fa fa-envelope" > Nitzia@gmail.com</i>
-                    <i class="fa fa-school" > Ing en sistemas, UAS.</i>
-                </p>
+                <ul>
+                    <li><i class="fa fa-phone" ></i> +52 6692443633</li>
+                    <li><i class="fa fa-envelope" ></i> Nitzia@gmail.com</li>
+                    <li><i class="fa fa-school" ></i>Ing en sistemas, UAS.</li>
+                </ul>
             </div>
         </div>
     </div>
