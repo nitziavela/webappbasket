@@ -25,15 +25,29 @@
         }
 
         public function update($id, $nombre, $logo){
-            return ($this->model->update($id, $nombre, $logo)) != false ? header("Location: consultarSponsors.php") : die('Error al modificar el usuario');
+             // Ruta donde se almacenará la imagen en el servidor
+             $uploadDir = '../../img/equipos/';
+
+             // Generar un nombre único para el archivo
+             if(isset($logo['name'])){
+                 $uploadFile = $uploadDir . uniqid() . '_' . basename($logo['name']);
+
+                 if (move_uploaded_file($logo['tmp_name'], $uploadFile)) {
+                    $id = $this->model->update($id, $nombre,$uploadFile);
+                }
+            } else{
+                $id = $this->model->update($id, $nombre, $logo,);
+            }
+
+       return($id!=false) ? header('Location: consultarSponsors.php') : die ("Error al modificar el patrocinador");
         }
 
         public function delete($id){
-            return ($this->model->delete($id)) ? header("Location: consultarSponsors.php") : die('Error al eliminar el usuario');
+            return ($this->model->delete($id)) ? header("Location: consultarSponsors.php") : die('Error al eliminar el patrocinador');
         }
 
         public function readOne($id){
-            return ($this->model->readOne($id) != false) ? $this->model->readOne($id) : die('No se encontró el usuario');
+            return ($this->model->readOne($id) != false) ? $this->model->readOne($id) : die('No se encontró el patrocinador');
         }
 
     }

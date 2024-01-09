@@ -21,7 +21,7 @@
                     <span class="fa solid fa-people-group"></span> &nbsp; MODIFICAR EQUIPO
                 </div>
                 <div class="card-body">
-                    <form action="equipoUpdate.php" method="post">
+                    <form action="equipoUpdate.php" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="idEquipo" class="form-label">ID DEL EQUIPO</label>
                         <input type="number" class="form-control" name="idEquipo" 

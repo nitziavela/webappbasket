@@ -27,7 +27,6 @@
         public function update($id, $nombre, $nombre_capitan, $correo_capitan, $telefono_capitan, $logo, $torneo){
                 // Ruta donde se almacenará la imagen en el servidor
                 $uploadDir = '../../img/equipos/';
-
                 // Generar un nombre único para el archivo
                 if(isset($logo['name'])){
                     $uploadFile = $uploadDir . uniqid() . '_' . basename($logo['name']);

@@ -36,7 +36,7 @@
                 logo = :logo WHERE idpatrocinadores = :id ");
                 //Asociamos los valores colocados como placeholder en el query mediante el bindParam()
                 $statement->bindParam(":id", $id);
-                $statement->bindParam(":nombreTorneo", $nombre);
+                $statement->bindParam(":nombre", $nombre);
                 $statement->bindParam(":logo", $logo);
                 return ($statement->execute()) ? $id : false;
             }
