@@ -7,7 +7,9 @@
     $rows = $objUsuariosController->consultarUsuarios();
 ?>
 <head>
-<link href="../admin/template/template.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <link href="../admin/template/template.css" rel="stylesheet">
 </head>
 <body>
     <div class="content">
@@ -43,36 +45,37 @@
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#idModal<?= $row['idusuarios'] ?>">
                                         <span class="fa solid fa-trash"></span>
                                     </button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="idModal<?= $row['idusuarios'] ?>" tabindex="-1" aria-labelledby="Modal<?= $row['idusuarios'] ?>" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="Modal<?= $row['idusuarios'] ?>">¿Desea eliminar el torneo?</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">Esta acción no se puede deshacer....</div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                    <a href="deleteUsuario.php?id=<?= $row['idusuarios'] ?>" class="btn btn-danger"> Eliminar </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </th> 
                             </tr>
                             <?php endforeach; ?>
                             <?php else: ?>
                             <tr>
-                                <td colspan="3" class="text-center">No hay torneos aún.</td>
+                                <td colspan="3" class="text-center">No hay usuarios aún.</td>
                             </tr>
                             <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
             </div>
+            
             <div class="mx-auto p-2">
                 <a href="../../index.php" class="btn btn-primary">REGRESAR </a>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="idModal<?= $row['idusuarios'] ?>" tabindex="-1" aria-labelledby="Modal<?= $row['idusuarios'] ?>" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="Modal<?= $row['idusuarios'] ?>">¿Desea eliminar el torneo?</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">Esta acción no se puede deshacer....</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <a href="deleteUsuario.php?id=<?= $row['idusuarios'] ?>" class="btn btn-danger"> Eliminar </a>
+                </div>
             </div>
         </div>
     </div>

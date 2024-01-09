@@ -17,10 +17,13 @@
 
   .content {
     position: relative;
-    z-index: 1; /* Coloca el contenido por encima del fondo */
     width: 80%;
     margin: 50px auto;
     padding: 20px;
     box-sizing: border-box;
     background: rgba(255, 255, 255, 0.8); /* Fondo blanco con cierta transparencia */
+  }
+
+  .ltpatrocinadores {
+    list-style: none;
   }

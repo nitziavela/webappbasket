@@ -39,35 +39,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/3cf56650b0.js" crossorigin="anonymous"></script>
+    <link href="index.css" rel="stylesheet">
 </head>
 <body>
+    <div class="">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
 
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="text-center"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</h3>
+                        </div>
+                        <div class="card-body">
 
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="text-center"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</h3>
+                            <!-- Formulario de inicio de sesión -->
+                            <form action="login.php" method="post">
+                                <div class="mb-3">
+                                    <label for="usuario" class="form-label">Usuario</label>
+                                    <input type="text" class="form-control" id="usuario" name="usuario" required placeholder="Nombre de Usuario">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="contrasena" class="form-label">Contraseña</label>
+                                    <input type="password" class="form-control" id="contrasena" name="contrasena" required placeholder="Contraseña">
+                                </div>
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
+                            </form>
+
+                        </div>
                     </div>
-                    <div class="card-body">
 
-                        <!-- Formulario de inicio de sesión -->
-                        <form action="login.php" method="post">
-                            <div class="mb-3">
-                                <label for="usuario" class="form-label">Usuario</label>
-                                <input type="text" class="form-control" id="usuario" name="usuario" required placeholder="Nombre de Usuario">
-                            </div>
-                            <div class="mb-3">
-                                <label for="contrasena" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="contrasena" name="contrasena" required placeholder="Contraseña">
-                            </div>
-                            <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
-                        </form>
-
-                    </div>
                 </div>
-
             </div>
         </div>
     </div>

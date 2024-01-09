@@ -16,6 +16,10 @@
             return ($this->model->consultarUsuarios()) ? $this->model->consultarUsuarios() : false;
         }
 
+        public function consultarOrganizadores(){
+            return ($this->model->consultarOrganizadores()) ? $this->model->consultarOrganizadores() : false;
+        }
+
         public function updateUsuario($id, $nombre, $username, $password, $rol){
             return ($this->model->updateUsuario($id, $nombre, $username, $password, $rol)) != false ? header("Location: consultarUsuarios.php") : die('Error al eliminar el usuario');
         }

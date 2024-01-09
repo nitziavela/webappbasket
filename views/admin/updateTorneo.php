@@ -1,10 +1,17 @@
 <?php
     require_once("../admin/template/header.php");
     require_once("../../controllers/torneosController.php");
+    require_once("../../controllers/sponsorController.php");
+    require_once("../../controllers/usuariosController.php");
     //Se instancia el controlador para ejecutar la consulta
     $objTorneosController = new torneosController();
+
+    $objSponsorController = new sponsorController();
+    $sponsors = $objSponsorController -> read();
     //Se capturan los regristros de la tabal en "filas"
     $lstTorneo = $objTorneosController->readOneTorneo($_GET['id']);
+
+    $pat = explode(",", $lstTorneo['patrocinadores']);
 ?>
 
 <div class="mx-auto p-5">
@@ -15,12 +22,12 @@
                 <div class="mb-3">
                     <label for="nombreTorneo" class="form-label">ID DEL TORNEO</label>
                     <input type="text" class="form-control" name="txtId" 
-                    id="nombreTorneo" value="<?= $lstTorneo['id'] ?>" >
+                    id="nombreTorneo" value="<?= $lstTorneo['idtorneos'] ?>" >
                 </div>
                 <div class="mb-3">
-                    <label for="nombreTorneo" class="form-label">NOMBRE DEL TORNEO (ID: <?= $lstTorneo['id'] ?>)</label>
+                    <label for="nombreTorneo" class="form-label">NOMBRE DEL TORNEO (ID: <?= $lstTorneo['idtorneos'] ?>)</label>
                     <input type="text" class="form-control" name="txtNombreTorneo" 
-                    id="nombreTorneo" value="<?= $lstTorneo['nombreTorneo'] ?>" >
+                    id="nombreTorneo" value="<?= $lstTorneo['nombre'] ?>" >
                 </div>
                 <div class="mb-3">
                     <label for="organizador" class="form-label">ORGANIZADOR (nombre completo) </label>
@@ -28,12 +35,15 @@
                     id="organizador" value="<?= $lstTorneo['organizador'] ?>" >
                 </div>
                 <div class="mb-3">
-                    <label for="patrocinador" class="form-label">PATROCINADOR(ES) </label>
-                    <textarea name="txtPatrocinador" id="patrocinador" cols="30" rows="2"
-                    class="form-control" ><?= $lstTorneo['patrocinadores'] ?></textarea>
-                    <span id="patrocinador" class="form-text">
-                        Se puede separar con "," si hay más de un patrocinador.
-                    </span>
+                    <label for="patrocinador" class="form-label">PATROCINADOR(ES) </label><br>
+                    <?php
+                        foreach($sponsors as $patrocinador){ ?>
+                            <input type="checkbox" name="patrocinadores[]" id="<?php echo "opcion".$patrocinador['nombre']; ?> " value="<?php echo $patrocinador['idpatrocinadores']; ?>" 
+                            <?php foreach($pat as $patros){
+                                if($patrocinador['nombre'] == $patros){ 
+                                    echo 'checked'; 
+                                    } } ?>> <?php echo $patrocinador['nombre']; ?> <br>
+                    <?php } ?>
                 </div>
                 <div class="row">
                     <div class="col mb-3">     

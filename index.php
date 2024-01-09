@@ -53,14 +53,27 @@ if (!isset($_SESSION["id"])) {
                 <a class="dropdown-item" href="views/admin/frmTorneos.php"><i class="fa-solid fa-user-plus" style="color: #17e84b;"></i>&nbsp;Agregar</a>
                 <a class="dropdown-item" href="views/admin/readAllTorneos.php"><i class="fa-solid fa-address-book" style="color: #005eff;"></i>&nbsp;Consultar</a>
                 <hr class="dropdown-divider">
+
+                 <!-- Patrocinadores -->
+                 <div class="nav-item dropend">
+                  <a class="nav-link dropdown-toggle" href="#" id="menuPatrocinadores" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa-solid fa-comment-dollar" style="color: #99EBEE;"></i>&nbsp;Patrocinadores
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="menuPatrocinadores">
+                    <a class="dropdown-item" href="views/sponsors/frmSponsor.php"><i class="fa-solid fa-user-plus" style="color: #17e84b;"></i>&nbsp;Agregar</a>
+                    <a class="dropdown-item" href="views/sponsors/consultarSponsors.php"><i class="fa-solid fa-address-book" style="color: #005eff;"></i>&nbsp;Consultar</a>
+                  </div>
+                </div> 
+
               <!-- Grupos -->
+                <hr class="dropdown-divider">
                 <div class="nav-item dropend">
                   <a class="nav-link dropdown-toggle" href="#" id="menuGrupos" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa-solid fa-users" style="color: #532877;"></i>&nbsp;Grupos
+                  <i class="fa-solid fa-users" style="color: #DC00FE;"></i>&nbsp;Grupos
                   </a>
                   <div class="dropdown-menu" aria-labelledby="menuGrupos">
-                    <a class="dropdown-item" href="#"><i class="fa-solid fa-user-plus" style="color: #17e84b;"></i>&nbsp;Agregar</a>
-                    <a class="dropdown-item" href="#"><i class="fa-solid fa-address-book" style="color: #005eff;"></i>&nbsp;Consultar</a>
+                    <a class="dropdown-item" href="views/grupos/frmGrupo.php"><i class="fa-solid fa-user-plus" style="color: #17e84b;"></i>&nbsp;Agregar</a>
+                    <a class="dropdown-item" href="views/grupos/consultarGrupos.php"><i class="fa-solid fa-address-book" style="color: #005eff;"></i>&nbsp;Consultar</a>
                   </div>
                 </div> 
 
@@ -68,11 +81,11 @@ if (!isset($_SESSION["id"])) {
                 <div class="nav-item dropend">
                 <hr class="dropdown-divider">
                   <a class="nav-link dropdown-toggle" href="#" id="menuEquipos" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa-solid fa-users-rays" style="color: #532877;"></i>&nbsp;Equipos
+                  <i class="fa-solid fa-users-rays" style="color: #EF1963;"></i>&nbsp;Equipos
                   </a>
                   <div class="dropdown-menu" aria-labelledby="menuEquipos">
-                  <a class="dropdown-item" href="#"><i class="fa-solid fa-user-plus" style="color: #17e84b;"></i>&nbsp;Agregar</a>
-                  <a class="dropdown-item" href="#"><i class="fa-solid fa-address-card" style="color: #d76c14;"></i>&nbsp;Editar</a>
+                  <a class="dropdown-item" href="views/equipos/frmEquipo.php"><i class="fa-solid fa-user-plus" style="color: #17e84b;"></i>&nbsp;Agregar</a>
+                  <a class="dropdown-item" href="views/equipos/consultarEquipos.php"><i class="fa-solid fa-address-book" style="color: #d76c14;"></i>&nbsp;Consultar</a>
                   </div>
                 </div>
 
@@ -83,8 +96,8 @@ if (!isset($_SESSION["id"])) {
                   <i class="fa-solid fa-person-running" style="color: #ead78f;"> </i>&nbsp;Jugadores  
                   </a>
                   <div class="dropdown-menu" aria-labelledby="menuJugadores">
-                  <a class="dropdown-item" href="#"><i class="fa-solid fa-user-plus" style="color: #17e84b;"></i>&nbsp;Agregar</a>
-                    <a class="dropdown-item" href="#"><i class="fa-solid fa-address-book" style="color: #005eff;"></i>&nbsp;Consultar</a>
+                  <a class="dropdown-item" href="views/jugadores/frmJugador.php"><i class="fa-solid fa-user-plus" style="color: #17e84b;"></i>&nbsp;Agregar</a>
+                    <a class="dropdown-item" href="views/jugadores/consultarJugadores.php"><i class="fa-solid fa-address-book" style="color: #005eff;"></i>&nbsp;Consultar</a>
                   </div>
                 </div>
 

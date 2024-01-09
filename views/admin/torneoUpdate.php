@@ -14,5 +14,9 @@
     $premio3 = $_POST['txtPremio3'];
     $otroPremio = $_POST['txtOtroPremio'];
 
+    foreach($patrocinadores as $patrocinador){
+        $objController->saveSponsorsTorneo($nombreTorneo, $patrocinador, $usuario, $contrasena, $organizador);
+    }
+
     $objController->updateTorneo($id,$nombreTorneo,$organizador,$patrocinadores,$sede,$categoria,$premio1,$premio2,$premio3,$otroPremio);
 ?>

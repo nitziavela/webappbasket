@@ -41,6 +41,11 @@
             return ($statement->execute()) ? $statement->fetchAll() : false;
         }
 
+        public function consultarOrganizadores() {
+            $statement = $this->PDO->prepare("SELECT * FROM usuarios WHERE rol = 'ORGANIZADOR' ");
+            return ($statement->execute()) ? $statement->fetchAll() : false;
+        }
+
         public function consultarUsuario($id) {
             $statement = $this->PDO->prepare("SELECT * FROM usuarios where idusuarios = :id limit 1");
             $statement->bindParam(':id', $id);
