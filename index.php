@@ -107,22 +107,12 @@ if (!isset($_SESSION["id"])) {
                 <i class="fa-regular fa-calendar-days" style="color: #617ba8"></i>&nbsp;Calendarios
                 </a>
                 <div class="dropdown-menu" aria-labelledby="menuCalendarios">
-                  <a class="dropdown-item" href="#"><i class="fa-regular fa-futbol" style="color: #1e2294;"> </i>&nbsp;Agregar Partido</a>
-                  <a class="dropdown-item" href="#"><i class="fa-solid fa-calendar-days" style="color: #6f6b67;"></i>&nbsp;Consultar Calendario</a>
+                  <a class="dropdown-item" href="views/calendarios/frmRoles.php"><i class="fa-solid fa-calendar-days" style="color: #6f6b67;"></i>&nbsp;Crear rol de juegos</a>
+                  <a class="dropdown-item" href="views/calendarios/consultarRoles.php"><i class="fa-solid fa-calendar-days" style="color: #6f6b67;"></i>&nbsp;Consultar roles</a>
+                  <a class="dropdown-item" href="views"><i class="fa-solid fa-basketball" style="color: #1e2294;"> </i>&nbsp;Agregar Partido</a>
+                  <a class="dropdown-item" href="views/calendarios/consultarCalendarios.php"><i class="fa-solid fa-calendar-days" style="color: #6f6b67;"></i>&nbsp;Consultar Calendario</a>
                 </div>
               </div>
-
-              <div class="nav-item dropend">
-              <hr class="dropdown-divider">
-              <a class="nav-link dropdown-toggle" href="#" id="menuResultados" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa-regular fa-file-lines" style="color: #544126;"></i>&nbsp;Captura de Resultados 
-              </a>
-              <div class="dropdown-menu" aria-labelledby="menuResultados">
-                <a class="dropdown-item" href="#"><i class="fa-regular fa-clipboard" style="color: #1aba17;"> </i>&nbsp;Capturar</a>
-                <a class="dropdown-item" href="#"><i class="fa-solid fa-address-card" style="color: #d76c14;"> </i>&nbsp;Consultar</a>
-              </div>
-              </div>
-            </li>
 
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="menuStanding" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

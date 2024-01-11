@@ -27,3 +27,120 @@
   .ltpatrocinadores {
     list-style: none;
   }
+
+  .widget-next-match {
+    border: 1px solid rgba(255, 255, 255, 0.1); }
+
+  .widget-body {
+    padding: 20px; 
+    background-color: #0d0f13;  }
+
+  .widget-vs {
+    width: 100%; }
+  .widget-vs img {
+    max-width: 120px; }
+  .widget-vs h3 {
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px; }
+  .widget-vs .vs > span {
+    display: inline-block;
+    font-size: 12px;
+    background: #ee1e46;
+    padding: 5px 20px;
+    border-radius: 30px;
+    color: #fff;
+    font-weight: 700; }
+
+.widget-vs-contents {
+  padding-bottom: 0px; }
+  .widget-vs-contents h4 {
+    color: #ee1e46;
+    font-size: 16px;
+    font-weight: 700; }
+
+    .score{
+      background-color: #0d0f13;
+      overflow: hidden;
+      border-radius: 10px;
+      margin-top: -80px;
+      -webkit-box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.1);
+      box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.1); }
+     .score {
+
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 2rem;
+        font-weight: 100;
+        z-index: 2;
+        letter-spacing: .2em; }
+
+  .d-block {
+    color: azure;
+    padding-left: 30px;
+  }
+
+ .team-2 {
+  margin-top: 65px;
+  margin-left: auto;
+      padding: 20px; }
+
+.team-1 {
+  margin-top: 80px;
+  margin-right: auto;
+  padding: 20px;
+}
+
+li {
+  list-style: none;
+}
+
+.results{
+  display: inline-block;
+  list-style: none;
+  width: 80px;
+  height: 40px;
+}
+
+.results2{
+  list-style: none;
+  width: 80px;
+  height: 40px;
+}
+
+.scoreupdate{
+  background-color: #0d0f13;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-top: -80px;
+  -webkit-box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.1); }
+ .scoreupdate {
+    position: absolute;
+    top: 50%;
+    left: 52%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 100;
+    z-index: 2;
+    letter-spacing: .2em; }
+
+    .small-input {
+      width: 80px;
+      height: 60px;
+      z-index: -1;
+    }
+
+    .small-input-text {
+      width: 10px;
+      height: 10px;
+      margin-bottom: 5px;
+    }
+
