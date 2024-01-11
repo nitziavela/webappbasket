@@ -26,6 +26,7 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">NOMBRE</th>
                                 <th scope="col">CATEGORIA</th>
+                                <th scope="col">TORNEO</th>
                                 <th scope="col">ACCIONES</th>                
                             </tr>
                         </thead>
@@ -36,6 +37,7 @@
                                 <th><?= $row['idgrupos'] ?></th>
                                 <th><?= $row['nombre'] ?></th>
                                 <th><?= $row['categoria'] ?></th>
+                                <th><?= $row['torneo'] ?></th>
                                 <th>
                                     <a href="consultarGrupo.php?id=<?= $row['idgrupos'] ?>" class="btn btn-primary"><span class="fa solid fa-list-check"></span></a>
                                     <a href="updateGrupo.php?id=<?= $row['idgrupos'] ?>" class="btn btn-success"><span class="fa solid fa-pen-to-square"></span></a>

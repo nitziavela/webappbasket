@@ -96,7 +96,6 @@ if (!isset($_SESSION["id"])) {
                   <i class="fa-solid fa-person-running" style="color: #ead78f;"> </i>&nbsp;Jugadores  
                   </a>
                   <div class="dropdown-menu" aria-labelledby="menuJugadores">
-                  <a class="dropdown-item" href="views/jugadores/frmJugador.php"><i class="fa-solid fa-user-plus" style="color: #17e84b;"></i>&nbsp;Agregar</a>
                     <a class="dropdown-item" href="views/jugadores/consultarJugadores.php"><i class="fa-solid fa-address-book" style="color: #005eff;"></i>&nbsp;Consultar</a>
                   </div>
                 </div>

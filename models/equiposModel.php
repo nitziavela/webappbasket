@@ -11,7 +11,7 @@
         public function insert($nombre, $nombre_capitan, $correo_capitan, $telefono_capitan, $logo, $torneo){
             $this->PDO->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
                 //$sql = 'INSERT INTO equipos VALUES(null, :nombre, :nombre_capitan, :correo_capitan, :telefono_capitan, :logo, :torneo)';
-                $sql = 'INSERT INTO equipos VALUES(null, :nombre, :nombre_capitan, :correo_capitan, :telefono_capitan, :logo, :torneo)';
+                $sql = 'INSERT INTO equipos (idequipos, nombre, nombre_capitan, correo_capitan, telefono_capitan, logo, fk_torneo) VALUES(null, :nombre, :nombre_capitan, :correo_capitan, :telefono_capitan, :logo, :torneo)';
                 //iniciamos declarando el statement y preparando la consulta
                 $statement = $this->PDO->prepare($sql);
                 //Asociamos los valores colocados como placeholder en el query mediante el bindParam()

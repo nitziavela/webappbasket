@@ -10,13 +10,20 @@
 
         public function agregarUsuario($nombre, $username, $password, $rol) {
             $sql = "INSERT INTO usuarios VALUES (null, :nombre, :username, :passwd, :rol)";
-            $pass = md5($password);
             $stmt = $this->PDO -> prepare($sql);
             $stmt->bindParam(':nombre', $nombre);
             $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':passwd', $pass);
+            $stmt->bindParam(':passwd', $password);
             $stmt->bindParam(':rol', $rol);
             return($stmt->execute()) ? $this->PDO->lastInsertId() : die('Error al agregar el usuario.');
+        }
+
+        public function agregarJugador($id, $nombre) {
+            $sql = "INSERT INTO jugadores (fk_usuario, nombre) VALUES (:id, :nombre)";
+            $stmt = $this->PDO -> prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':nombre', $nombre);
+            return($stmt->execute()) ? $this->PDO->lastInsertId() : die('Error al agregar el jugador.');
         }
     
         public function eliminarUsuario($idUsuario) {

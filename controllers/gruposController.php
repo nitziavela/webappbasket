@@ -16,8 +16,8 @@
             return ($this->model->read()) ? $this->model->read() : false;
         }
 
-        public function update($id, $nombre, $categoria){
-            return ($this->model->update($id, $nombre, $categoria)) != false ? header("Location: consultarGrupos.php") : die('Error al modificar el grupo');
+        public function update($id, $nombre, $categoria, $torneo){
+            return ($this->model->update($id, $nombre, $categoria, $torneo)) != false ? header("Location: consultarGrupos.php") : die('Error al modificar el grupo');
         }
 
         public function delete($id){

@@ -9,6 +9,9 @@
 
         public function agregarUsuario($nombre, $username, $password, $rol){
             $id = $this->model->agregarUsuario($nombre, $username, $password, $rol);
+            if($rol == 'JUGADOR'){
+                $this->model->agregarJugador($id, $nombre);
+            } 
             return ($id!=false) ? header('Location: consultarUsuarios.php') : header('Location: consultarUsuarios.php');
         }
         

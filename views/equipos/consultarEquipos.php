@@ -73,7 +73,7 @@
                             <?php endforeach; ?>
                             <?php else: ?>
                             <tr>
-                                <td colspan="3" class="text-center">No hay patrocinadores aún.</td>
+                                <td colspan="3" class="text-center">No hay equipos aún.</td>
                             </tr>
                             <?php endif; ?>
                         </tbody>

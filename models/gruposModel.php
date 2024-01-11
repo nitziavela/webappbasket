@@ -22,7 +22,7 @@
             //El administrador creará el torneo y al usuario (organizador) por lo que al crear su password, buscaremos encriptarla por seguridad utilizando el método password_hash y password_Verify
           
             public function read(){
-                $statement = $this->PDO->prepare("SELECT * FROM grupos");
+                $statement = $this->PDO->prepare("SELECT gr.*, tr.nombre as torneo FROM grupos gr LEFT JOIN torneos tr ON tr.idtorneos = gr.fk_torneo");
                 return ($statement->execute()) ? $statement->fetchAll() : false;
             }
             //Metodo para devolver la informacion de un solo torneo.
@@ -31,7 +31,7 @@
                 $statement->bindParam(":id",$id);
                 return ($statement->execute()) ? $statement->fetch() : false;
             }
-            public function update($id, $nombre, $categoria){
+            public function update($id, $nombre, $categoria, $torneo){
                 $statement = $this->PDO->prepare("UPDATE grupos SET nombre = :nombre,
                 categoria = :categoria, fk_torneo = :torneo WHERE idgrupos = :id ");
                 //Asociamos los valores colocados como placeholder en el query mediante el bindParam()

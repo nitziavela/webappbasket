@@ -1,4 +1,11 @@
-<?php require_once("../admin/template/header.php"); ?>
+<?php 
+    require_once("../admin/template/header.php");
+    require_once("../../controllers/torneosController.php");
+
+    $objTorneoController = new torneosController();
+    $torneos = $objTorneoController->readTorneos();
+    
+?>
 <head>
 <link href="../admin/template/template.css" rel="stylesheet">
 </head>
@@ -28,6 +35,14 @@
                             <option value="Empresarial">Empresarial</option>
                             <option value="Infantil">Infantil</option>
                             <option value="Minibasket">Minibasket</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="torneo" class="form-label">TORNEO AL QUE PERTENECE: </label> <br>
+                        <select name="torneo" id="torneo">
+                            <?php foreach($torneos as $torneo){ ?>
+                                <option value="<?php echo $torneo['idtorneos'] ?>"><?php echo $torneo['nombre'] ?></option>
+                          <?php  } ?>
                         </select>
                     </div>
                     <div class="col mb-3">
