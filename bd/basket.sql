@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-01-2024 a las 06:28:18
+-- Tiempo de generación: 12-01-2024 a las 11:08:12
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 7.4.33
 
@@ -69,6 +69,14 @@ CREATE TABLE `calendario_equipos_jugadores_torneo_jornada` (
   `faltas` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `calendario_equipos_jugadores_torneo_jornada`
+--
+
+INSERT INTO `calendario_equipos_jugadores_torneo_jornada` (`id`, `fk_calendario`, `fk_equipo`, `fk_jugador`, `fk_torneo`, `jornada`, `triples`, `dobles`, `faltas`) VALUES
+(1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 1, 4, 2, 4, 1, 10, 10, 10);
+
 -- --------------------------------------------------------
 
 --
@@ -129,8 +137,7 @@ CREATE TABLE `grupos` (
 --
 
 INSERT INTO `grupos` (`idgrupos`, `nombre`, `categoria`, `fk_torneo`) VALUES
-(1, 'A', '1ra. Fuerza', 4),
-(2, 'GRUPO B', '1ra. fuerza', 4);
+(1, 'A', '1ra. Fuerza', 4);
 
 -- --------------------------------------------------------
 
@@ -163,7 +170,8 @@ CREATE TABLE `jugadores` (
 
 INSERT INTO `jugadores` (`idjugadores`, `nombre`, `apellido1`, `apellido2`, `fecha_nac`, `correo`, `celular`, `tipo_sangre`, `contacto_emergencia`, `fotografia`, `fk_equipo`, `fk_usuario`, `triples`, `dobles`, `faltas`, `posicion`) VALUES
 (1, 'Valeria', 'Sanchez', 'Velazquez', '0000-00-00', 'asdf@gmail.com', '32323423', 'O+', NULL, '../../img/jugadores/659f6b496d8c6_curry.png', 3, 6, 0, 0, 0, 'Ala'),
-(2, 'Raton', 'Paton', 'Paton', '2024-01-10', 'asdf@gmail.com', '1234512345', 'O+', NULL, '../../img/jugadores/659f6ff3242c4_lebron.png', 4, 7, 0, 0, 0, 'Ala-pivot');
+(2, 'Raton', 'Paton', 'Paton', '2024-01-10', 'asdf@gmail.com', '1234512345', 'O+', NULL, '../../img/jugadores/659f6ff3242c4_lebron.png', 4, 7, 0, 0, 0, 'Ala-pivot'),
+(3, 'Prueba', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 8, 0, 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -198,7 +206,7 @@ CREATE TABLE `patrocinadores` (
 --
 
 INSERT INTO `patrocinadores` (`idpatrocinadores`, `nombre`, `logo`) VALUES
-(3, 'ADIDAS', '../../img/equipos/659cdcaac0567_pngwing.com.png'),
+(3, 'ADIDAS', '../../img/equipos/65a10d1f99937_98fa13af68e08dac6d7d952f0cfd5c7b.jpg'),
 (4, 'NBA', '../../img/sponsors/659b0d3406ece_NBA-logo-png-download-free-1200x675.png');
 
 -- --------------------------------------------------------
@@ -219,9 +227,7 @@ CREATE TABLE `patrocinadores_torneos` (
 
 INSERT INTO `patrocinadores_torneos` (`id`, `fk_patrocinador`, `nombre_torneo`) VALUES
 (1, 3, '0'),
-(2, 4, '0'),
-(11, 3, 'Prueba'),
-(12, 4, 'Prueba');
+(2, 4, '0');
 
 -- --------------------------------------------------------
 
@@ -241,7 +247,8 @@ CREATE TABLE `rol_juegos` (
 --
 
 INSERT INTO `rol_juegos` (`idrol_juegos`, `jornadas`, `fk_torneo`, `nombre`) VALUES
-(1, 3, 4, 'Apertura');
+(1, 3, 4, 'Apertura'),
+(3, 2, 4, 'MID GAME');
 
 -- --------------------------------------------------------
 
@@ -291,7 +298,8 @@ INSERT INTO `usuarios` (`idusuarios`, `nombre`, `username`, `password`, `rol`) V
 (3, 'Valeria Sanchez Velazquez', 'valeria', 'fruta', 'ORGANIZADOR'),
 (4, 'valeriana', 'valeriana', 'fruta', 'JUGADOR'),
 (6, 'Valeria', '123', '202cb962ac59075b964b07152d234b70', 'JUGADOR'),
-(7, 'Raton', 'raton', 'raton', 'JUGADOR');
+(7, 'Raton', 'raton', 'raton', 'JUGADOR'),
+(8, 'Prueba', 'prueba', 'prueba', 'JUGADOR');
 
 --
 -- Índices para tablas volcadas
@@ -381,7 +389,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `calendarios`
 --
 ALTER TABLE `calendarios`
-  MODIFY `idcalendarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idcalendarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `calendario_equipos_jugadores_torneo_jornada`
+--
+ALTER TABLE `calendario_equipos_jugadores_torneo_jornada`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos`
@@ -399,7 +413,7 @@ ALTER TABLE `grupos`
 -- AUTO_INCREMENT de la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  MODIFY `idjugadores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idjugadores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `jugadores_equipos_torneo`
@@ -423,7 +437,7 @@ ALTER TABLE `patrocinadores_torneos`
 -- AUTO_INCREMENT de la tabla `rol_juegos`
 --
 ALTER TABLE `rol_juegos`
-  MODIFY `idrol_juegos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idrol_juegos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `torneos`
@@ -435,7 +449,7 @@ ALTER TABLE `torneos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idusuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
