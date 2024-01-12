@@ -7,9 +7,9 @@
             $this->model = new calendarioModel();
         }
 
-        public function insert($nombre, $categoria, $torneo){
-            $id = $this->model->insert($nombre, $categoria, $torneo);
-            return ($id!=false) ? header('Location: consultarGrupos.php') : die ("Error al agregar el Grupo");
+        public function insert($equipo_local, $equipo_visitante){
+            $id = $this->model->insert($equipo_local, $equipo_visitante);
+            return ($id!=false) ? header('Location: consultarCalendarios.php') : die ("Error al agregar el Partido");
         }
 
         public function insertRol($jornadas, $torneo, $nombre){
@@ -41,7 +41,7 @@
         }
 
         public function delete($id){
-            return ($this->model->delete($id)) ? header("Location: consultarGrupos.php") : die('Error al eliminar el grupo');
+            return ($this->model->delete($id)) ? header("Location: consultarCalendarios.php") : die('Error al eliminar el grupo');
         }
 
         public function deleteRol($id){

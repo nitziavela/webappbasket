@@ -9,7 +9,7 @@
     $correocapitan = $_POST['correocapitan'];
     $telefonocapitan = $_POST['telefonocapitan'];
     $torneos = $_POST['torneos'];
-    if($_FILES){  
+    if(!empty($_FILES['logo']['name'])){  
         $logo = $_FILES['logo'];
     } else{
         $logo = $_POST['nombre_logo'];

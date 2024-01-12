@@ -5,7 +5,7 @@
 
     $id = $_POST['idSponsor'];
     $nombre = $_POST['nombre'];
-    if($_FILES){  
+    if(!empty($_FILES['logo']['name'])){  
         $logo = $_FILES['logo'];
     } else{
         $logo = $_POST['nombre_logo'];

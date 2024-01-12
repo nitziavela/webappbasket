@@ -175,23 +175,25 @@
                 return ($statement->execute()) ? true : false;
             }
 
+            public function delete($id){
+                $statement = $this->PDO->prepare("DELETE FROM calendarios WHERE idcalendarios= :id ");
+                $statement->bindParam(":id",$id);
+                return ($statement->execute()) ? true : false;
+            }
+
         //Método para hacer un INSERT en la BD, en la tabla "calendarios"
-        public function insert($nombre, $nombre_capitan, $correo_capitan, $telefono_capitan, $logo, $torneo){
+        public function insert($equipo_local, $equipo_visitante){
             $this->PDO->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
                 //$sql = 'INSERT INTO equipos VALUES(null, :nombre, :nombre_capitan, :correo_capitan, :telefono_capitan, :logo, :torneo)';
-                $sql = 'INSERT INTO equipos (idequipos, nombre, nombre_capitan, correo_capitan, telefono_capitan, logo, fk_torneo) VALUES(null, :nombre, :nombre_capitan, :correo_capitan, :telefono_capitan, :logo, :torneo)';
+                $sql = 'INSERT INTO calendarios (idcalendarios, fk_equipo_local, fk_equipo_visitante) VALUES(null, :equipo_local, :equipo_visitante)';
                 //iniciamos declarando el statement y preparando la consulta
                 $statement = $this->PDO->prepare($sql);
                 //Asociamos los valores colocados como placeholder en el query mediante el bindParam()
-                $statement->bindParam(":nombre", $nombre);
-                $statement->bindParam(":nombre_capitan", $nombre_capitan);
-                $statement->bindParam(":correo_capitan", $correo_capitan);
-                $statement->bindParam(":telefono_capitan", $telefono_capitan);
-                $statement->bindParam(":logo", $logo);
-                $statement->bindParam(":torneo", $torneo);
+                $statement->bindParam(":equipo_local", $equipo_local);
+                $statement->bindParam(":equipo_visitante", $equipo_visitante);
 
                 //Ejecutamos el statement mediante execute(). Valoraremos mediante un shorthand if lo que regresará este método 
-                return($statement->execute()) ? $this->PDO->lastInsertId() : die("No se pudo agregar el equipo");
+                return($statement->execute()) ? $this->PDO->lastInsertId() : die("No se pudo agregar el partido");
             }   
 
             public function insertResultados($jugador, $torneo, $equipo, $calendario, $jornada, $triples, $dobles, $faltas){

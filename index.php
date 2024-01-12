@@ -109,7 +109,7 @@ if (!isset($_SESSION["id"])) {
                 <div class="dropdown-menu" aria-labelledby="menuCalendarios">
                   <a class="dropdown-item" href="views/calendarios/frmRoles.php"><i class="fa-solid fa-calendar-days" style="color: #6f6b67;"></i>&nbsp;Crear rol de juegos</a>
                   <a class="dropdown-item" href="views/calendarios/consultarRoles.php"><i class="fa-solid fa-calendar-days" style="color: #6f6b67;"></i>&nbsp;Consultar roles</a>
-                  <a class="dropdown-item" href="views"><i class="fa-solid fa-basketball" style="color: #1e2294;"> </i>&nbsp;Agregar Partido</a>
+                  <a class="dropdown-item" href="views/calendarios/frmPartidos.php"><i class="fa-solid fa-basketball" style="color: #1e2294;"> </i>&nbsp;Agregar Partido</a>
                   <a class="dropdown-item" href="views/calendarios/consultarCalendarios.php"><i class="fa-solid fa-calendar-days" style="color: #6f6b67;"></i>&nbsp;Consultar Calendario</a>
                 </div>
               </div>

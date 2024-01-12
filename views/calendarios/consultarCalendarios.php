@@ -89,7 +89,6 @@
                     </div>
                 </div>
                 <a href="capturarResultados.php?idcalendario=<?= $row['idcalendarios'] ?>&equipo_local=<?= $row['fk_equipo_local'] ?>&equipo_visitante=<?= $row['fk_equipo_visitante'] ?>&idtorneo=<?= $row['fk_torneo'] ?>&jornada=<?= $row['jornada'] ?>" class="btn btn-warning" title="Capturar Resultados"><span class="fa solid fa-clipboard-list"></span></a>
-                <a href="consultarResultados.php?id=<?= $row['idcalendarios'] ?>" class="btn btn-success" title="Consultar Resultados"><span class="fa solid fa-square-poll-vertical"></span></a>
                 <?php } ?> 
             </div>
             <?php } ?> 

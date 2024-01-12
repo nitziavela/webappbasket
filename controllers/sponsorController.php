@@ -27,16 +27,15 @@
         public function update($id, $nombre, $logo){
              // Ruta donde se almacenará la imagen en el servidor
              $uploadDir = '../../img/equipos/';
-
              // Generar un nombre único para el archivo
-             if(isset($logo['name'])){
+             if(!empty(($logo['name']))){
                  $uploadFile = $uploadDir . uniqid() . '_' . basename($logo['name']);
 
                  if (move_uploaded_file($logo['tmp_name'], $uploadFile)) {
                     $id = $this->model->update($id, $nombre,$uploadFile);
                 }
             } else{
-                $id = $this->model->update($id, $nombre, $logo,);
+                $id = $this->model->update($id, $nombre, $logo);
             }
 
        return($id!=false) ? header('Location: consultarSponsors.php') : die ("Error al modificar el patrocinador");
