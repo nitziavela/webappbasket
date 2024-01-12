@@ -47,6 +47,10 @@
 
         public function readOne($id){
             return ($this->model->readOne($id) != false) ? $this->model->readOne($id) : die('No se encontró el equipo');
+        } 
+        
+        public function readTeamsPlayers($id, $calendario){
+            return ($this->model->readTeamsPlayers($id, $calendario) != false) ? $this->model->readTeamsPlayers($id, $calendario) : die('No se encontró el equipo');
         }
 
     }

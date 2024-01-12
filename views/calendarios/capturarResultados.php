@@ -12,6 +12,8 @@
     $rows = $objcalendariosController->readOne($_GET['idcalendario']);
     $equipolocal = $objEquipoController->readOne($_GET['equipo_local']);
     $equipovisitante = $objEquipoController->readOne($_GET['equipo_visitante']);
+    $jugadoresVisitantes = $objEquipoController->readTeamsPlayers($_GET['equipo_visitante'], $_GET['idcalendario']);
+    $jugadoresLocales = $objEquipoController->readTeamsPlayers($_GET['equipo_local'],  $_GET['idcalendario']);
 ?>
 <head>
 <link href="../admin/template/template.css" rel="stylesheet">
@@ -34,23 +36,59 @@
                             <tr>
                                 <th scope="col">NOMBRE</th>
                                 <th scope="col">EQUIPO</th>
-                                <th scope="col">POSICION</th>      
+                                <th scope="col">POSICION</th>
+                                <th scope="col">TRIPLES</th>
+                                <th scope="col">DOBLES</th>
+                                <th scope="col">FALTAS</th> 
+                                <th scope="col">ACCIONES</th>      
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if($rows): ?> JUGADORES VISITANTES
+                            <?php foreach($jugadoresVisitantes as $jv): 
+                            ?>
+                            <tr>
+                                <th><?= $jv['nombre'].' '.$jv['apellido1'].' '.$jv['apellido2'] ?></th>
+                                <th><img src="<?= $jv['logo'] ?>" alt="Logo del equipo" style="width: 120px;"></th>
+                                <th><?= $jv['posicion'] ?></th>
+                                <th><?= $jv['triples_jg'] ?></th>
+                                <th><?= $jv['dobles_jg'] ?></th>
+                                <th><?= $jv['faltas_jg'] ?></th>
+                                <th><a href="capturarJugador.php?id=<?= $jv['idjugadores'] ?>" class="btn btn-success">  Capturar Resultados</a></th>
+                            </tr>
+                            <?php endforeach; ?>
+                            <?php else: ?>
+                            <tr>
+                                <td colspan="3" class="text-center">No hay jugadores aún.</td>
+                            </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                    <table class="table table-hover table">
+                        <thead class="table-light">JUGADORES LOCALES
+                            <tr>
+                                <th scope="col">NOMBRE</th>
+                                <th scope="col">EQUIPO</th>
+                                <th scope="col">POSICION</th>
+                                <th scope="col">TRIPLES</th>
+                                <th scope="col">DOBLES</th>
+                                <th scope="col">FALTAS</th> 
+                                <th scope="col">ACCIONES</th>    
                             </tr>
                         </thead>
                         <tbody>
                             <?php if($rows): ?>
-                            <?php foreach($rows as $row): 
-                                $nombre_jugadores = explode(',', $row['jugadores_visitante']);
-                                foreach($nombre_jugadores as $nombre_jugador):
-                                    $nombre = explode(' ', $nombre_jugador);
-                                    $jugador = $objJugadoresController->readByName($nombre[0]);
+                            <?php foreach($jugadoresLocales as $jv): 
                             ?>
                             <tr>
-                                <th><?= print_r($jugador);exit; $jugador['nombre_jugador'] ?></th>
-                                <th><img src="<?= $jugador['logo'] ?>" alt="Logo del equipo"></th>
-                                <th><?= $jugador['posicion'] ?></th>
+                                <th><?= $jv['nombre'].' '.$jv['apellido1'].' '.$jv['apellido2'] ?></th>
+                                <th><img src="<?= $jv['logo'] ?>" alt="Logo del equipo" style="width: 120px;"></th>
+                                <th><?= $jv['posicion'] ?></th>
+                                <th><?= $jv['triples_jg'] ?></th>
+                                <th><?= $jv['dobles_jg'] ?></th>
+                                <th><?= $jv['faltas_jg'] ?></th>
+                                <th><a href="capturarJugador.php?idjugador=<?= $jv['idjugadores'] ?>&" class="btn btn-success">  Capturar Resultados</a></th>
                             </tr>
-                            <?php endforeach; ?>
                             <?php endforeach; ?>
                             <?php else: ?>
                             <tr>

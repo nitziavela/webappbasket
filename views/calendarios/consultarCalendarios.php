@@ -16,7 +16,6 @@
     <div class="content">
         <div class="mx-auto p-5">
         <?php foreach($rows as $row){ ?>
-           <?php  print_r($row); ?>
             <div class="card text-center">
                 <div class="card-header">
                     <span class="fa solid fa-chess-board"></span>&nbsp;ENCUENTROS
@@ -95,5 +94,6 @@
             </div>
             <?php } ?> 
         </div>
+        <a href="../../index.php" class="btn btn-primary"></span>Regresar</a>
     </div>
 </body>

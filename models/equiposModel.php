@@ -32,6 +32,19 @@
                 LEFT JOIN torneos torneo ON torneo.idtorneos = teams.fk_torneo");
                 return ($statement->execute()) ? $statement->fetchAll() : false;
             }
+
+            public function readTeamsPlayers($equipo, $calendario){
+                $statement = $this->PDO->prepare("SELECT teams.*, torneo.nombre as nombre_torneo, players.*, cejtj.triples as triples_jg, cejtj.dobles as dobles_jg, cejtj.faltas as faltas_jg FROM equipos teams
+                LEFT JOIN jugadores players ON players.fk_equipo = teams.idequipos
+                LEFT JOIN torneos torneo ON torneo.idtorneos = teams.fk_torneo
+                LEFT JOIN calendarios calendar ON calendar.fk_torneo = torneo.idtorneos
+                LEFT JOIN calendario_equipos_jugadores_torneo_jornada cejtj ON cejtj.fk_calendario = calendar.idcalendarios
+                WHERE teams.idequipos = :id
+                GROUP by players.idjugadores");
+                $statement->bindParam(":id", $equipo);
+                return ($statement->execute()) ? $statement->fetchAll() : false;
+            }
+
             //Metodo para devolver la informacion de un solo equipo.
             public function readOne($id){
                 $statement = $this->PDO->prepare("SELECT teams.*, torneo.nombre as nombre_torneo FROM equipos teams 
