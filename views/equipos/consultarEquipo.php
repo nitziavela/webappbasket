@@ -5,7 +5,16 @@
     $objEquiposController = new equiposController();
 
     //obtener el id desde el boton que mandara eliminar el registro
-    $equipo = $objEquiposController->readOne($_GET['id']);
+    //$equipo = $objEquiposController->readOne($_GET['id']);
+
+     //Llamar a la api
+     $apiUrl = 'http://localhost/webappbasket/controllers/api/readTeam.php?id='.$_GET['id'];
+
+     // Realizar la solicitud GET a la API REST
+     $jsonData = file_get_contents($apiUrl);
+
+     // Decodificar la respuesta JSON
+     $equipo = json_decode($jsonData, true);
 
 ?>
 <head>

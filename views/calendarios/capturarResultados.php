@@ -54,7 +54,7 @@
                                 <th><?= $jv['triples_jg'] ?></th>
                                 <th><?= $jv['dobles_jg'] ?></th>
                                 <th><?= $jv['faltas_jg'] ?></th>
-                                <th><a href="capturarJugador.php?id=<?= $jv['idjugadores'] ?>" class="btn btn-success">  Capturar Resultados</a></th>
+                                <th><a href="capturarJugador.php?idjugador=<?= $jv['idjugadores'] ?>&idcalendario=<?= $_GET['idcalendario'] ?>&idequipo=<?= $_GET['equipo_visitante'] ?>&idtorneo=<?= $jv['idtorneo'] ?>&jornada=<?= $rows[0]['jornada'] ?>" class="btn btn-success"> Capturar Resultados</a></th>
                             </tr>
                             <?php endforeach; ?>
                             <?php else: ?>
@@ -87,7 +87,7 @@
                                 <th><?= $jv['triples_jg'] ?></th>
                                 <th><?= $jv['dobles_jg'] ?></th>
                                 <th><?= $jv['faltas_jg'] ?></th>
-                                <th><a href="capturarJugador.php?idjugador=<?= $jv['idjugadores'] ?>&" class="btn btn-success">  Capturar Resultados</a></th>
+                                <th><a href="capturarJugador.php?idjugador=<?= $jv['idjugadores'] ?>&idcalendario=<?= $_GET['idcalendario'] ?>&idequipo=<?= $_GET['equipo_visitante'] ?>&idtorneo=<?= $jv['idtorneo'] ?>&jornada=<?= $rows['jornada'] ?>" class="btn btn-success"> Capturar Resultados</a></th>
                             </tr>
                             <?php endforeach; ?>
                             <?php else: ?>

@@ -34,7 +34,7 @@
             }
 
             public function readTeamsPlayers($equipo, $calendario){
-                $statement = $this->PDO->prepare("SELECT teams.*, torneo.nombre as nombre_torneo, players.*, cejtj.triples as triples_jg, cejtj.dobles as dobles_jg, cejtj.faltas as faltas_jg FROM equipos teams
+                $statement = $this->PDO->prepare("SELECT teams.*, torneo.nombre as nombre_torneo, players.*, cejtj.triples as triples_jg, cejtj.dobles as dobles_jg, cejtj.faltas as faltas_jg, torneo.idtorneos as idtorneo FROM equipos teams
                 LEFT JOIN jugadores players ON players.fk_equipo = teams.idequipos
                 LEFT JOIN torneos torneo ON torneo.idtorneos = teams.fk_torneo
                 LEFT JOIN calendarios calendar ON calendar.fk_torneo = torneo.idtorneos

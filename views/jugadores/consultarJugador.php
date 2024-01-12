@@ -7,8 +7,17 @@
     $objEquiposController = new equiposController();
 
     //obtener el id desde el boton que mandara eliminar el registro
-    $jugadores = $objjugadoresController->readOne($_GET['id']);
+    //$jugadores = $objjugadoresController->readOne($_GET['id']);
     $equipos = $objEquiposController->read();
+
+    //Llamar a la api
+    $apiUrl = 'http://localhost/webappbasket/controllers/api/readPlayer.php?id='.$_GET['id'];
+
+     // Realizar la solicitud GET a la API REST
+     $jsonData = file_get_contents($apiUrl);
+
+     // Decodificar la respuesta JSON
+     $jugadores = json_decode($jsonData, true);
 ?>
 <head>
 <link href="../admin/template/template.css" rel="stylesheet">
@@ -23,9 +32,9 @@
                 <div class="card-body">
                     <form action="jugadorUpdate.php" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
-                        <label for="idEquipo" class="form-label">ID DEL EQUIPO</label>
-                        <input type="number" class="form-control" name="idEquipo" 
-                        id="idEquipo" value="<?= $jugadores['idjugadores'] ?>" readonly >
+                        <label for="idJugador" class="form-label">ID DEL JUGADORO</label>
+                        <input type="number" class="form-control" name="idJugador" 
+                        id="idJugador" value="<?= $jugadores['idjugadores'] ?>" readonly >
                     </div>
                     <div class="mb-3">
                         <label for="nombre" class="form-label">NOMBRE</label>

@@ -29,6 +29,11 @@
                         <?php } ?>
                         </select>
                     </div>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">NOMBRE</label><br>
+                        <input type="text" class="form-control" name="nombre" placeholder="Escribe el nombre..." required
+                        id="nombre">
+                    </div>
                     <div class="col mb-3">
                         <button type="submit" name="accion" value="agregarUsuario" class="btn btn-primary">Guardar</button>
                         <a href="../../index.php" class="btn btn-danger">Cancelar</a>

@@ -4,7 +4,8 @@
 
     $jornadas = $_POST['jornadas'];
     $torneo = $_POST['torneos'];
+    $nombre = $_POST['nombre'];
 
-    $objController->insertRol($jornadas, $torneo)
+    $objController->insertRol($jornadas, $torneo, $nombre);
 
 ?>

@@ -12,8 +12,8 @@
             return ($id!=false) ? header('Location: consultarGrupos.php') : die ("Error al agregar el Grupo");
         }
 
-        public function insertRol($jornadas, $torneo){
-            $id = $this->model->insertRol($jornadas, $torneo);
+        public function insertRol($jornadas, $torneo, $nombre){
+            $id = $this->model->insertRol($jornadas, $torneo,  $nombre);
             return ($id!=false) ? header('Location: consultarRoles.php') : die ("Error al agregar el Rol");
         }
         

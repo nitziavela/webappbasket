@@ -9,15 +9,16 @@
         }
 
         //Método para hacer un INSERT en la BD, en la tabla "rol_juegos"
-        public function insertRol($jornadas, $torneo){
+        public function insertRol($jornadas, $torneo, $nombre){
             $this->PDO->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
                 //$sql = 'INSERT INTO equipos VALUES(null, :nombre, :nombre_capitan, :correo_capitan, :telefono_capitan, :logo, :torneo)';
-                $sql = 'INSERT INTO rol_juegos VALUES(null, :jornadas, :torneo)';
+                $sql = 'INSERT INTO rol_juegos VALUES(null, :jornadas, :torneo, :nombre)';
                 //iniciamos declarando el statement y preparando la consulta
                 $statement = $this->PDO->prepare($sql);
                 //Asociamos los valores colocados como placeholder en el query mediante el bindParam()
                 $statement->bindParam(":jornadas", $jornadas);
                 $statement->bindParam(":torneo", $torneo);
+                $statement->bindParam(":nombre", $nombre);
 
                 //Ejecutamos el statement mediante execute(). Valoraremos mediante un shorthand if lo que regresará este método 
                 return($statement->execute()) ? $this->PDO->lastInsertId() : die("No se pudo agregar el rol de juegos");
@@ -192,6 +193,24 @@
                 //Ejecutamos el statement mediante execute(). Valoraremos mediante un shorthand if lo que regresará este método 
                 return($statement->execute()) ? $this->PDO->lastInsertId() : die("No se pudo agregar el equipo");
             }   
+
+            public function insertResultados($jugador, $torneo, $equipo, $calendario, $jornada, $triples, $dobles, $faltas){
+                $this->PDO->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+                    //$sql = 'INSERT INTO equipos VALUES(null, :nombre, :nombre_capitan, :correo_capitan, :telefono_capitan, :logo, :torneo)';
+                    $sql = 'INSERT INTO equipos (idequipos, nombre, nombre_capitan, correo_capitan, telefono_capitan, logo, fk_torneo) VALUES(null, :nombre, :nombre_capitan, :correo_capitan, :telefono_capitan, :logo, :torneo)';
+                    //iniciamos declarando el statement y preparando la consulta
+                    $statement = $this->PDO->prepare($sql);
+                    //Asociamos los valores colocados como placeholder en el query mediante el bindParam()
+                    $statement->bindParam(":nombre", $nombre);
+                    $statement->bindParam(":nombre_capitan", $nombre_capitan);
+                    $statement->bindParam(":correo_capitan", $correo_capitan);
+                    $statement->bindParam(":telefono_capitan", $telefono_capitan);
+                    $statement->bindParam(":logo", $logo);
+                    $statement->bindParam(":torneo", $torneo);
+    
+                    //Ejecutamos el statement mediante execute(). Valoraremos mediante un shorthand if lo que regresará este método 
+                    return($statement->execute()) ? $this->PDO->lastInsertId() : die("No se pudo agregar el equipo");
+                }   
             //El administrador creará el torneo y al usuario (organizador) por lo que al crear su password, buscaremos encriptarla por seguridad utilizando el método password_hash y password_Verify
           
     }
