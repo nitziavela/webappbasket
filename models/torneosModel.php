@@ -106,7 +106,7 @@
                 return ($statement->execute()) ? $id : false;
             }
             public function delete($id){
-                $statement = $this->PDO->prepare("DELETE FROM torneos WHERE idtorneos= :id ");
+                $statement = $this->PDO->prepare("DELETE FROM torneos WHERE idtorneos = :id ");
                 $statement->bindParam(":id",$id);
                 return ($statement->execute()) ? true : false;
             }

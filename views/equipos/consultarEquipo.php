@@ -51,7 +51,7 @@
                         <img src="<?php echo $equipo['logo'] ?>" alt="" style ="width: 200px; text-align: center; display: block; margin: 0 auto;">
                     </div>
                     <div class="colo-12">
-                            <a href="consultarSponsors.php" class="btn btn-success">REGRESAR</a>
+                            <a href="consultarEquipos.php" class="btn btn-success">REGRESAR</a>
                         </div>
                     </form>
                 </div>

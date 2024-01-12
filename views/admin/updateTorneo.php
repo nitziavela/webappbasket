@@ -84,7 +84,7 @@
                     </div>
                     <div class="col mb-3">
                     <label for="otroPremio" class="form-label">OTRO PREMIO (CAMPEÓN CANASTERO) </label>
-                        <input type="text" name="txtOtroPremio" id="otroPremio" class="form-control" value="<?= $lstTorneo['otroPremio'] ?>" > 
+                        <input type="text" name="txtOtroPremio" id="otroPremio" class="form-control" value="<?= $lstTorneo['premio_otro'] ?>" > 
                     </div>
                 </div>
                 <!-- Usuario y contraseña para el Organizador del Torneo -->

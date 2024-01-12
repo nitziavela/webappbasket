@@ -31,7 +31,7 @@
             $this->model->deleteAll($id);
 
             return ($this->model->delete($id)) ? header("Location: readAllTorneos.php") 
-            : header("Location: readOneTorneo.php?id=".$id);
+            : die("No se pudo eliminar el torneo");
         }
     }
 ?>
