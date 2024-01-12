@@ -34,6 +34,30 @@
                 return ($statement->execute()) ? true : false;
             }
 
+            public function update($id, $equipo_visitante, $equipo_local, $fecha_hora, $sede, $tipo_juego, 
+            $equipo_ganador, $razon_ganador, $marcador_visitante, $marcador_local, $jornada){
+                $this->PDO->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+                $sql = 'UPDATE calendarios SET fk_equipo_visitante = :equipo_visitante, fk_equipo_local = :equipo_local,
+                fecha_hora = :fecha_hora,sede = :sede,tipo_juego = :tipo_juego, equipo_ganador = :equipo_ganador,
+                razon_ganador = :razon_ganador,marcador_visitante = :marcador_visitante, marcador_local = :marcador_local,
+                jornada = :jornada
+                WHERE idcalendarios = :id';
+                $statement = $this->PDO->prepare($sql);
+                //Asociamos los valores colocados como placeholder en el query mediante el bindParam()
+                $statement->bindParam(":equipo_visitante", $equipo_visitante);
+                $statement->bindParam(":equipo_local", $equipo_local);
+                $statement->bindParam(":fecha_hora", $fecha_hora);
+                $statement->bindParam(":sede", $sede);
+                $statement->bindParam(":tipo_juego", $tipo_juego);
+                $statement->bindParam(":equipo_ganador", $equipo_ganador);
+                $statement->bindParam(":razon_ganador", $razon_ganador);
+                $statement->bindParam(":marcador_visitante", $marcador_visitante);
+                $statement->bindParam(":marcador_local", $marcador_local);
+                $statement->bindParam(":jornada", $jornada);
+                $statement->bindParam(":id", $id);
+                return ($statement->execute()) ? true : false;
+            }
+
             public function read(){
                 $statement = $this->PDO->prepare("SELECT 
                 sch.*,
@@ -117,10 +141,12 @@
                     FROM jugadores jg
                     LEFT JOIN equipos eq ON eq.idequipos = jg.fk_equipo
                     WHERE eq.idequipos = sch.fk_equipo_local
-                    GROUP BY eq.idequipos) AS jugadores_local
+                    GROUP BY eq.idequipos) AS jugadores_local,
+                    rj.jornadas as jornadas
                 FROM calendarios sch
                 LEFT JOIN equipos eq_visitante ON eq_visitante.idequipos = sch.fk_equipo_visitante
                 LEFT JOIN equipos eq_local ON eq_local.idequipos = sch.fk_equipo_local
+                LEFT JOIN rol_juegos rj ON rj.idrol_juegos = sch.fk_rol
                 WHERE idcalendarios = :id ;");
                 $statement->bindParam(":id",$id);
                 return ($statement->execute()) ? $statement->fetchAll() : false;

@@ -16,6 +16,7 @@
     <div class="content">
         <div class="mx-auto p-5">
         <?php foreach($rows as $row){ ?>
+           <?php  print_r($row); ?>
             <div class="card text-center">
                 <div class="card-header">
                     <span class="fa solid fa-chess-board"></span>&nbsp;ENCUENTROS
@@ -64,12 +65,12 @@
                         </div>
                         </div>
             <div class="mx-auto p-2">
-                <a href="consultarCalendario.php?id=<?= $row['idcalendarios'] ?>" class="btn btn-primary"><span class="fa solid fa-list-check"></span></a>
+                <a href="consultarCalendario.php?id=<?= $row['idcalendarios'] ?>" class="btn btn-primary" title="Consultar Calendario"><span class="fa solid fa-list-check"></span></a>
                 <?php if($row['equipo_ganador'] == NULL){ ?>
-                <a href="updateCalendario.php?id=<?= $row['idcalendarios'] ?>" class="btn btn-success"><span class="fa solid fa-pen-to-square"></span></a>
+                <a href="updateCalendario.php?id=<?= $row['idcalendarios'] ?>" class="btn btn-success" title="Modificar Calendario"><span class="fa solid fa-pen-to-square"></span></a>
                 <!--Eliminar registro utilizando usando Ventana Modal -->
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#idModal<?= $row['idcalendarios'] ?>">
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#idModal<?= $row['idcalendarios'] ?>" title="Eliminar Calendario">
                     <span class="fa solid fa-trash"></span>
                 </button>
                 <!-- Modal se puso hasta el ultimo para no causar conflicto con el css del body-->
@@ -83,11 +84,13 @@
                             <div class="modal-body">Esta acción no se puede deshacer....</div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <a href="deleteCalendario.php?id=<?= $row['idcalendarios'] ?>" class="btn btn-danger"> Eliminar </a>
+                                <a href="deleteCalendario.php?id=<?= $row['idcalendarios'] ?>" class="btn btn-danger" title="Eliminar Calendario"> Eliminar </a>
                             </div>
                         </div>
                     </div>
                 </div>
+                <a href="capturarResultados.php?idcalendario=<?= $row['idcalendarios'] ?>&equipo_local=<?= $row['fk_equipo_local'] ?>&equipo_visitante=<?= $row['fk_equipo_visitante'] ?>&idtorneo=<?= $row['fk_torneo'] ?>&jornada=<?= $row['jornada'] ?>" class="btn btn-warning" title="Capturar Resultados"><span class="fa solid fa-clipboard-list"></span></a>
+                <a href="consultarResultados.php?id=<?= $row['idcalendarios'] ?>" class="btn btn-success" title="Consultar Resultados"><span class="fa solid fa-square-poll-vertical"></span></a>
                 <?php } ?> 
             </div>
             <?php } ?> 

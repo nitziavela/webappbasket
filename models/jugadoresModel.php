@@ -22,12 +22,37 @@
                     ELSE
                         'N/A'
                 END AS nombre_jugador,
-                eq.nombre AS nombre_equipo
+                eq.nombre AS nombre_equipo, eq.logo as logo
                 FROM 
                 jugadores jg
                 LEFT JOIN equipos eq ON eq.idequipos = jg.fk_equipo;");
                 return ($statement->execute()) ? $statement->fetchAll() : false;
             }
+
+            public function readByName($name){
+                $this->PDO->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+                $statement = $this->PDO->prepare("SELECT jg.*, 
+                CASE
+                    WHEN jg.nombre IS NOT NULL AND jg.apellido1 IS NOT NULL AND jg.apellido2 IS NOT NULL THEN
+                        CONCAT_WS(' ', jg.nombre, jg.apellido1, jg.apellido2)
+                    WHEN jg.nombre IS NOT NULL AND jg.apellido2 IS NOT NULL THEN
+                        CONCAT_WS(' ', jg.nombre, jg.apellido2)
+                    WHEN jg.nombre IS NOT NULL AND jg.apellido1 IS NOT NULL THEN
+                    CONCAT_WS(' ', jg.nombre, jg.apellido1)
+                    WHEN jg.nombre IS NOT NULL THEN
+                        jg.nombre
+                    ELSE
+                        'N/A'
+                END AS nombre_jugador,
+                eq.nombre AS nombre_equipo, eq.logo as logo
+                FROM 
+                jugadores jg
+                LEFT JOIN equipos eq ON eq.idequipos = jg.fk_equipo
+                WHERE jg.nombre = :nombre ");
+                $statement->bindParam(':nombre', $nombre);
+                return ($statement->execute()) ? $statement->fetchAll() : false;
+            }
+
             //Metodo para devolver la informacion de un solo torneo.
             public function readOne($id){
                 $statement = $this->PDO->prepare("SELECT jg.*, 

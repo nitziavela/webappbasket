@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-01-2024 a las 02:52:04
+-- Tiempo de generación: 12-01-2024 a las 06:28:18
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 7.4.33
 
@@ -37,16 +37,37 @@ CREATE TABLE `calendarios` (
   `equipo_ganador` varchar(145) DEFAULT NULL,
   `razon_ganador` enum('ANOTACIONES','DEFAULT') DEFAULT 'DEFAULT',
   `marcador_visitante` double DEFAULT 0,
-  `marcador_local` double DEFAULT 0
+  `marcador_local` double DEFAULT 0,
+  `fk_rol` int(11) DEFAULT NULL,
+  `jornada` int(11) DEFAULT NULL,
+  `fk_torneo` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `calendarios`
 --
 
-INSERT INTO `calendarios` (`idcalendarios`, `fk_equipo_local`, `fk_equipo_visitante`, `fecha_hora`, `sede`, `tipo_juego`, `equipo_ganador`, `razon_ganador`, `marcador_visitante`, `marcador_local`) VALUES
-(1, 3, 4, '0000-00-00 00:00:00', 'CANCHAS INFONAVIT PLAYAS', 'EXHIBICION', NULL, 'DEFAULT', 0, 0),
-(2, 4, 3, '0000-00-00 00:00:00', 'CANCHAS INFONAVIT PLAYAS', 'EXHIBICION', NULL, 'DEFAULT', 0, 0);
+INSERT INTO `calendarios` (`idcalendarios`, `fk_equipo_local`, `fk_equipo_visitante`, `fecha_hora`, `sede`, `tipo_juego`, `equipo_ganador`, `razon_ganador`, `marcador_visitante`, `marcador_local`, `fk_rol`, `jornada`, `fk_torneo`) VALUES
+(1, 3, 4, '0000-00-00 00:00:00', 'CANCHAS INFONAVIT PLAYAS', 'EXHIBICION', NULL, 'DEFAULT', 1, 1, 1, 1, 4),
+(2, 4, 3, '0000-00-00 00:00:00', 'CANCHAS INFONAVIT PLAYAS', 'EXHIBICION', NULL, 'DEFAULT', 0, 0, 1, 1, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `calendario_equipos_jugadores_torneo_jornada`
+--
+
+CREATE TABLE `calendario_equipos_jugadores_torneo_jornada` (
+  `id` int(11) NOT NULL,
+  `fk_calendario` int(11) DEFAULT NULL,
+  `fk_equipo` int(11) DEFAULT NULL,
+  `fk_jugador` int(11) DEFAULT NULL,
+  `fk_torneo` int(11) DEFAULT NULL,
+  `jornada` int(11) DEFAULT NULL,
+  `triples` int(11) DEFAULT 0,
+  `dobles` int(11) DEFAULT 0,
+  `faltas` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -205,39 +226,22 @@ INSERT INTO `patrocinadores_torneos` (`id`, `fk_patrocinador`, `nombre_torneo`) 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `rol_equipos_jugadores_torneo_jornada`
---
-
-CREATE TABLE `rol_equipos_jugadores_torneo_jornada` (
-  `id` int(11) NOT NULL,
-  `fk_rol` int(11) DEFAULT NULL,
-  `fk_equipo` int(11) DEFAULT NULL,
-  `fk_jugador` int(11) DEFAULT NULL,
-  `fk_torneo` int(11) DEFAULT NULL,
-  `jornada` int(11) DEFAULT NULL,
-  `triples` int(11) DEFAULT 0,
-  `dobles` int(11) DEFAULT 0,
-  `faltas` int(11) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `rol_juegos`
 --
 
 CREATE TABLE `rol_juegos` (
   `idrol_juegos` int(11) NOT NULL,
   `jornadas` int(11) DEFAULT NULL,
-  `fk_torneo` int(11) DEFAULT NULL
+  `fk_torneo` int(11) DEFAULT NULL,
+  `nombre` varchar(145) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `rol_juegos`
 --
 
-INSERT INTO `rol_juegos` (`idrol_juegos`, `jornadas`, `fk_torneo`) VALUES
-(1, 3, 4);
+INSERT INTO `rol_juegos` (`idrol_juegos`, `jornadas`, `fk_torneo`, `nombre`) VALUES
+(1, 3, 4, 'Apertura');
 
 -- --------------------------------------------------------
 
@@ -300,6 +304,12 @@ ALTER TABLE `calendarios`
   ADD PRIMARY KEY (`idcalendarios`);
 
 --
+-- Indices de la tabla `calendario_equipos_jugadores_torneo_jornada`
+--
+ALTER TABLE `calendario_equipos_jugadores_torneo_jornada`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `encuentros`
 --
 ALTER TABLE `encuentros`
@@ -343,12 +353,6 @@ ALTER TABLE `patrocinadores`
 ALTER TABLE `patrocinadores_torneos`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_patrocinadores` (`fk_patrocinador`);
-
---
--- Indices de la tabla `rol_equipos_jugadores_torneo_jornada`
---
-ALTER TABLE `rol_equipos_jugadores_torneo_jornada`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `rol_juegos`
