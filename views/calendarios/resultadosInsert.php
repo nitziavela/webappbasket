@@ -5,7 +5,7 @@
     $jugador = $_POST['idjugador'];
     $torneo = $_POST['idtorneo'];
     $equipo = $_POST['idequipo'];
-    $calendario = $_POST['calendario'];
+    $calendario = $_POST['idcalendario'];
     $jornada = $_POST['jornada'];
     $triples = $_POST['triples'];
     $dobles = $_POST['dobles'];

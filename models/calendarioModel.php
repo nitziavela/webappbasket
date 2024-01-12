@@ -197,16 +197,37 @@
             public function insertResultados($jugador, $torneo, $equipo, $calendario, $jornada, $triples, $dobles, $faltas){
                 $this->PDO->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
                     //$sql = 'INSERT INTO equipos VALUES(null, :nombre, :nombre_capitan, :correo_capitan, :telefono_capitan, :logo, :torneo)';
-                    $sql = 'INSERT INTO equipos (idequipos, nombre, nombre_capitan, correo_capitan, telefono_capitan, logo, fk_torneo) VALUES(null, :nombre, :nombre_capitan, :correo_capitan, :telefono_capitan, :logo, :torneo)';
+                    $sql = 'UPDATE jugadores SET triples = triples + :triples, dobles = +:dobles, faltas + :faltas WHERE idjugadores = '.$jugador;
                     //iniciamos declarando el statement y preparando la consulta
                     $statement = $this->PDO->prepare($sql);
                     //Asociamos los valores colocados como placeholder en el query mediante el bindParam()
-                    $statement->bindParam(":nombre", $nombre);
-                    $statement->bindParam(":nombre_capitan", $nombre_capitan);
-                    $statement->bindParam(":correo_capitan", $correo_capitan);
-                    $statement->bindParam(":telefono_capitan", $telefono_capitan);
-                    $statement->bindParam(":logo", $logo);
-                    $statement->bindParam(":torneo", $torneo);
+                    $statement->bindParam(":triples", $triples, PDO::PARAM_INT);
+                    $statement->bindParam(":dobles", $dobles, PDO::PARAM_INT);
+                    $statement->bindParam(":faltas", $faltas, PDO::PARAM_INT);
+                    $statement->execute();
+
+                    $suma = $triples + $dobles;
+
+                    $sql = 'UPDATE equipos SET puntos_a_favor = puntos_a_favor + :suma WHERE idequipos ='.$equipo;
+                    //iniciamos declarando el statement y preparando la consulta
+                    $statement = $this->PDO->prepare($sql);
+                    //Asociamos los valores colocados como placeholder en el query mediante el bindParam()
+                    $statement->bindParam(":suma", $suma, PDO::PARAM_INT);
+                    $statement->execute();
+
+                    $sql = 'INSERT INTO calendario_equipos_jugadores_torneo_jornada (id, fk_calendario, fk_equipo, fk_jugador, fk_torneo, jornada, triples, dobles, faltas) 
+                    VALUES(null, :fk_calendario, :fk_equipo, :fk_jugador, :fk_torneo, :jornada, :triples, :dobles, :faltas)';
+                    //iniciamos declarando el statement y preparando la consulta
+                    $statement = $this->PDO->prepare($sql);
+                    //Asociamos los valores colocados como placeholder en el query mediante el bindParam()
+                    $statement->bindParam(":fk_calendario", $calendario);
+                    $statement->bindParam(":fk_equipo", $equipo);
+                    $statement->bindParam(":fk_jugador", $jugador);
+                    $statement->bindParam(":fk_torneo", $torneo);
+                    $statement->bindParam(":jornada", $jornada);
+                    $statement->bindParam(":triples", $triples);
+                    $statement->bindParam(":dobles", $dobles);
+                    $statement->bindParam(":faltas", $faltas);
     
                     //Ejecutamos el statement mediante execute(). Valoraremos mediante un shorthand if lo que regresará este método 
                     return($statement->execute()) ? $this->PDO->lastInsertId() : die("No se pudo agregar el equipo");

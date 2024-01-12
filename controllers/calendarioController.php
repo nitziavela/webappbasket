@@ -16,6 +16,11 @@
             $id = $this->model->insertRol($jornadas, $torneo,  $nombre);
             return ($id!=false) ? header('Location: consultarRoles.php') : die ("Error al agregar el Rol");
         }
+
+        public function insertResultados($jugador, $torneo, $equipo, $calendario, $jornada, $triples, $dobles, $faltas){
+            $id = $this->model->insertResultados($jugador, $torneo, $equipo, $calendario, $jornada, $triples, $dobles, $faltas);
+            return ($id!=false) ? header('Location: consultarCalendarios.php') : die ("Error al agregar los resultados");
+        }
         
         public function read(){
             return ($this->model->read()) ? $this->model->read() : false;
