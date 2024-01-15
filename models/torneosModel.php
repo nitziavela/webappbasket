@@ -80,8 +80,8 @@
                 $statement = $this->PDO->prepare("SELECT tournament.*, users.nombre as organizador, (SELECT GROUP_CONCAT(p.nombre SEPARATOR ', ') 
                 FROM patrocinadores p
                 LEFT JOIN patrocinadores_torneos pt ON pt.fk_patrocinador = p.idpatrocinadores
-                WHERE pt.nombre_torneo = tournament.nombre
-                GROUP BY pt.nombre_torneo
+                WHERE pt.fk_torneo = tournament.idtorneos
+                GROUP BY pt.fk_torneo
                 order by p.idpatrocinadores
             ) as patrocinadores  FROM torneos tournament 
                 LEFT JOIN usuarios users on users.idusuarios = tournament.fk_organizador
