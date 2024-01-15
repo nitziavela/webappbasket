@@ -64,7 +64,7 @@
                         </div>
                         </div>
             <div class="mx-auto p-2">
-                <a href="consultarCalendario.php" class="btn btn-primary"><span class="fa solid fa-arrow-left"></span></a>
+                <a href="consultarCalendarios.php" class="btn btn-primary"><span class="fa solid fa-arrow-left"></span></a>
             </div>
             <?php } ?> 
         </div>
