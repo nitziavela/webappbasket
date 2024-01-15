@@ -48,7 +48,8 @@ if (!isset($_SESSION["id"])) {
               <a class="nav-link dropdown-toggle" href="#" id="menuTorneos" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa-solid fa-award"></i>&nbsp;Torneos
               </a>
-
+              
+              <?php if($_SESSION['rol'] != 'USUARIO'){ ?>
               <div class="dropdown-menu" aria-labelledby="menuTorneos">
                 <a class="dropdown-item" href="views/admin/frmTorneos.php"><i class="fa-solid fa-user-plus" style="color: #17e84b;"></i>&nbsp;Agregar</a>
                 <a class="dropdown-item" href="views/admin/readAllTorneos.php"><i class="fa-solid fa-address-book" style="color: #005eff;"></i>&nbsp;Consultar</a>
@@ -99,7 +100,7 @@ if (!isset($_SESSION["id"])) {
                     <a class="dropdown-item" href="views/jugadores/consultarJugadores.php"><i class="fa-solid fa-address-book" style="color: #005eff;"></i>&nbsp;Consultar</a>
                   </div>
                 </div>
-
+                <?php } ?>
               <!-- Calendarios -->
               <div class="nav-item dropend">
               <hr class="dropdown-divider">
@@ -107,9 +108,11 @@ if (!isset($_SESSION["id"])) {
                 <i class="fa-regular fa-calendar-days" style="color: #617ba8"></i>&nbsp;Calendarios
                 </a>
                 <div class="dropdown-menu" aria-labelledby="menuCalendarios">
+                <?php if($_SESSION['rol'] != 'USUARIO'){ ?>
                   <a class="dropdown-item" href="views/calendarios/frmRoles.php"><i class="fa-solid fa-calendar-days" style="color: #6f6b67;"></i>&nbsp;Crear rol de juegos</a>
                   <a class="dropdown-item" href="views/calendarios/consultarRoles.php"><i class="fa-solid fa-calendar-days" style="color: #6f6b67;"></i>&nbsp;Consultar roles</a>
                   <a class="dropdown-item" href="views/calendarios/frmPartidos.php"><i class="fa-solid fa-basketball" style="color: #1e2294;"> </i>&nbsp;Agregar Partido</a>
+                  <?php } ?>
                   <a class="dropdown-item" href="views/calendarios/consultarCalendarios.php"><i class="fa-solid fa-calendar-days" style="color: #6f6b67;"></i>&nbsp;Consultar Calendario</a>
                 </div>
               </div>
