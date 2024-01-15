@@ -34,17 +34,6 @@
                     <input type="text" class="form-control" name="txtOrganizador" 
                     id="organizador" value="<?= $lstTorneo['organizador'] ?>" >
                 </div>
-                <div class="mb-3">
-                    <label for="patrocinador" class="form-label">PATROCINADOR(ES) </label><br>
-                    <?php
-                        foreach($sponsors as $patrocinador){ ?>
-                            <input type="checkbox" name="patrocinadores[]" id="<?php echo "opcion".$patrocinador['nombre']; ?> " value="<?php echo $patrocinador['idpatrocinadores']; ?>" 
-                            <?php foreach($pat as $patros){
-                                if($patrocinador['nombre'] == $patros){ 
-                                    echo 'checked'; 
-                                    } } ?>> <?php echo $patrocinador['nombre']; ?> <br>
-                    <?php } ?>
-                </div>
                 <div class="row">
                     <div class="col mb-3">     
                         <label for="sede" class="form-label">SEDE (cancha) </label>

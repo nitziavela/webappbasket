@@ -1,7 +1,11 @@
 <?php
+<<<<<<< HEAD
 
 use Com\Tecnick\Pdf\Tcpdf;
 
+=======
+    session_start();
+>>>>>>> ec90c2a384a5a2d02082171063b5d41a42feee70
     require_once("../admin/template/header.php");
     require_once("../../controllers/calendarioController.php");
     require_once('../../fpdf/fpdf.php'); // Incluir la biblioteca FPDF 
@@ -91,7 +95,12 @@ use Com\Tecnick\Pdf\Tcpdf;
                         </div>
             <div class="mx-auto p-2">
                 <a href="consultarCalendario.php?id=<?= $row['idcalendarios'] ?>" class="btn btn-primary" title="Consultar Calendario"><span class="fa solid fa-list-check"></span></a>
+<<<<<<< HEAD
                 <?php if($row['equipo_ganador'] == NULL){ ?>
+=======
+                <?php if($_SESSION['rol'] != 'USUARIO'){  
+                    if($row['equipo_ganador'] == NULL){ ?>
+>>>>>>> ec90c2a384a5a2d02082171063b5d41a42feee70
                 <a href="updateCalendario.php?id=<?= $row['idcalendarios'] ?>" class="btn btn-success" title="Modificar Calendario"><span class="fa solid fa-pen-to-square"></span></a>
                 <!--Eliminar registro utilizando usando Ventana Modal -->
                 <!-- Button trigger modal -->
@@ -115,7 +124,12 @@ use Com\Tecnick\Pdf\Tcpdf;
                     </div>
                 </div>
                 <a href="capturarResultados.php?idcalendario=<?= $row['idcalendarios'] ?>&equipo_local=<?= $row['fk_equipo_local'] ?>&equipo_visitante=<?= $row['fk_equipo_visitante'] ?>&idtorneo=<?= $row['fk_torneo'] ?>&jornada=<?= $row['jornada'] ?>" class="btn btn-warning" title="Capturar Resultados"><span class="fa solid fa-clipboard-list"></span></a>
+<<<<<<< HEAD
                 <?php } ?> 
+=======
+                <?php }
+                }?> 
+>>>>>>> ec90c2a384a5a2d02082171063b5d41a42feee70
             </div>
             <?php } ?> 
         </div>

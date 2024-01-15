@@ -45,7 +45,7 @@
                 $stmt->bindParam(":password", $contrasena);
                 $stmt->bindParam(":organizador", $organizador);
                 $stmt->execute() ? $stmt->fetch() : die('El usuario y/o la contraseña no coinciden con el organizador.');
-
+            
                 $statement = $this->PDO->prepare("INSERT INTO patrocinadores_torneos VALUES(null, :patrocinador, :torneo)");
                 $statement->bindParam(":patrocinador", $patrocinador);
                 $statement->bindParam(":torneo", $torneo);
@@ -91,7 +91,6 @@
             }
             public function update($id, $nombreTorneo, $sede, $categoria, 
             $premio1, $premio2, $premio3, $otroPremio){
-                print_r($nombreTorneo);exit;
                 $statement = $this->PDO->prepare("UPDATE torneos SET nombre = :nombreTorneo,
                 fk_organizador = :organizador, sede = :sede, premio1 = :premio1, premio2 = :premio2, premio3 = :premio3,
                 premio_otro = :otroPremio, categoria = :categoria, WHERE idtorneos = :id ");
