@@ -9,11 +9,12 @@
         $premio1, $premio2, $premio3, $otroPremio, $usuario, $contrasena){
             $id = $this->model->insert($nombreTorneo,$organizador, $sede, $categoria, 
             $premio1, $premio2, $premio3, $otroPremio, $usuario, $contrasena);
-            return($id!=false) ? header("Location: readAllTorneos.php") : die("Error al crear el torneo.");
+            return($id!=false) ? true : die("Error al crear el torneo.");
         }
 
         public function saveSponsorsTorneo($nombreTorneo,$patrocinador, $usuario, $contrasena, $organizador){
             $id = $this->model->insertST($nombreTorneo,$patrocinador, $usuario, $contrasena, $organizador);
+            return($id!=false) ? header('Location: readAllTorneos.php') : die("Error al crear el torneo.");
         }
 
         public function readTorneos(){

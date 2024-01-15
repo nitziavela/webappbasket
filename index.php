@@ -119,9 +119,9 @@ if (!isset($_SESSION["id"])) {
               <i class="fa-solid fa-cat" style="color: #805b64;"></i>&nbsp;Standing 
               </a>
               <div class="dropdown-menu" aria-labelledby="menuStanding">
-                <a class="dropdown-item" href="#"><i class="fa-solid fa-list" style="color: #11e4ba;"> </i>&nbsp;General</a>
-                <a class="dropdown-item" href="#"><i class="fa-solid fa-basketball" style="color: #c46212;"> </i>&nbsp;Canasteros</a>
-                <a class="dropdown-item" href="#"><i class="fa-brands fa-medium" style="color: #54aacf;"> </i>&nbsp;Triples</a>
+                <a class="dropdown-item" href="views/standings/consultarStandingGeneral.php"><i class="fa-solid fa-list" style="color: #11e4ba;"> </i>&nbsp;General</a>
+                <a class="dropdown-item" href="views/standings/consultarStandingJugador.php"><i class="fa-solid fa-basketball" style="color: #c46212;"> </i>&nbsp;Jugadores</a>
+                <a class="dropdown-item" href="views/standings/consultarStandingEquipos.php"><i class="fa-brands fa-medium" style="color: #54aacf;"> </i>&nbsp;Equipos</a>
               </div>
             </li>
           </ul>

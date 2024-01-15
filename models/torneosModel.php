@@ -4,6 +4,7 @@
     class torneosModel {
         public $PDO;
         public function __construct(){
+            //INSTANCIA
             $connection = new DataBase();
             //Llamamos al método connect y lo asignamos a nuestra variable PDO
             $this->PDO = $connection->connect();
@@ -36,7 +37,7 @@
             }
 
             //Funcion para almacenar los patrocinadores de los torneos
-            public function insertST($nombreTorneo, $patrocinador,$usuario,$contrasena, $organizador){
+            public function insertST($torneo, $patrocinador,$usuario,$contrasena, $organizador){
                 //VALIDAR SI LA CONTRASEÑA Y EL USUARIO PERTENECEN AL ORGANIZADOR
                 $sql = "SELECT * FROM usuarios WHERE username = :usuario AND password = :password AND idusuarios = :organizador";
                 $stmt = $this->PDO->prepare($sql);
@@ -45,9 +46,9 @@
                 $stmt->bindParam(":organizador", $organizador);
                 $stmt->execute() ? $stmt->fetch() : die('El usuario y/o la contraseña no coinciden con el organizador.');
 
-                $statement = $this->PDO->prepare("INSERT INTO patrocinadores_torneos VALUES(null, :patrocinador, :nombreTorneo)");
+                $statement = $this->PDO->prepare("INSERT INTO patrocinadores_torneos VALUES(null, :patrocinador, :torneo)");
                 $statement->bindParam(":patrocinador", $patrocinador);
-                $statement->bindParam(":nombreTorneo", $nombreTorneo);
+                $statement->bindParam(":torneo", $torneo);
 
                 return($statement->execute()) ? $this->PDO->lastInsertId() : die("Error al almacenar el patrocinador");
             }
@@ -67,8 +68,8 @@
                 (SELECT GROUP_CONCAT(p.logo SEPARATOR ', ') 
                     FROM patrocinadores p
                     LEFT JOIN patrocinadores_torneos pt ON pt.fk_patrocinador = p.idpatrocinadores
-                    WHERE pt.nombre_torneo = t.nombre
-                    GROUP BY pt.nombre_torneo
+                    WHERE pt.fk_torneo = t.idtorneos
+                    GROUP BY pt.fk_torneo
                 ) as patrocinadores 
             FROM torneos t 
             LEFT JOIN usuarios users ON users.idusuarios = t.fk_organizador;");

@@ -65,7 +65,7 @@
                         </div>
             <div class="mx-auto p-2">
                 <a href="consultarCalendario.php?id=<?= $row['idcalendarios'] ?>" class="btn btn-primary" title="Consultar Calendario"><span class="fa solid fa-list-check"></span></a>
-                <?php if($row['equipo_ganador'] == NULL){ ?>
+                <?php // if($row['equipo_ganador'] == NULL){ ?>
                 <a href="updateCalendario.php?id=<?= $row['idcalendarios'] ?>" class="btn btn-success" title="Modificar Calendario"><span class="fa solid fa-pen-to-square"></span></a>
                 <!--Eliminar registro utilizando usando Ventana Modal -->
                 <!-- Button trigger modal -->
@@ -89,7 +89,7 @@
                     </div>
                 </div>
                 <a href="capturarResultados.php?idcalendario=<?= $row['idcalendarios'] ?>&equipo_local=<?= $row['fk_equipo_local'] ?>&equipo_visitante=<?= $row['fk_equipo_visitante'] ?>&idtorneo=<?= $row['fk_torneo'] ?>&jornada=<?= $row['jornada'] ?>" class="btn btn-warning" title="Capturar Resultados"><span class="fa solid fa-clipboard-list"></span></a>
-                <?php } ?> 
+                <?php// } ?> 
             </div>
             <?php } ?> 
         </div>

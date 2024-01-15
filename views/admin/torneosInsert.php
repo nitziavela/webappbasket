@@ -15,10 +15,10 @@
 
     $objController = new torneosController();
 
-    foreach($patrocinadores as $patrocinador){
-        $objController->saveSponsorsTorneo($nombreTorneo, $patrocinador, $usuario, $contrasena, $organizador);
-     }
-
     $id = $objController->saveTorneo($nombreTorneo, $organizador, $sede, $categoria, 
     $premio1, $premio2, $premio3, $otroPremio, $usuario, $contrasena);
+    
+    foreach($patrocinadores as $patrocinador){
+        $objController->saveSponsorsTorneo($id, $patrocinador, $usuario, $contrasena, $organizador);
+     }
 ?>

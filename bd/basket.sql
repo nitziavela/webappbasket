@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-01-2024 a las 11:08:12
+-- Tiempo de generación: 15-01-2024 a las 02:29:46
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 7.4.33
 
@@ -34,22 +34,23 @@ CREATE TABLE `calendarios` (
   `fecha_hora` datetime DEFAULT NULL,
   `sede` varchar(145) DEFAULT NULL,
   `tipo_juego` varchar(145) DEFAULT NULL,
-  `equipo_ganador` varchar(145) DEFAULT NULL,
+  `equipo_ganador` int(11) DEFAULT NULL,
   `razon_ganador` enum('ANOTACIONES','DEFAULT') DEFAULT 'DEFAULT',
   `marcador_visitante` double DEFAULT 0,
   `marcador_local` double DEFAULT 0,
   `fk_rol` int(11) DEFAULT NULL,
   `jornada` int(11) DEFAULT NULL,
-  `fk_torneo` int(11) DEFAULT NULL
+  `fk_torneo` int(11) DEFAULT NULL,
+  `equipo_perdedor` int(11) DEFAULT NULL,
+  `fk_grupo` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `calendarios`
 --
 
-INSERT INTO `calendarios` (`idcalendarios`, `fk_equipo_local`, `fk_equipo_visitante`, `fecha_hora`, `sede`, `tipo_juego`, `equipo_ganador`, `razon_ganador`, `marcador_visitante`, `marcador_local`, `fk_rol`, `jornada`, `fk_torneo`) VALUES
-(1, 3, 4, '0000-00-00 00:00:00', 'CANCHAS INFONAVIT PLAYAS', 'EXHIBICION', NULL, 'DEFAULT', 1, 1, 1, 1, 4),
-(2, 4, 3, '0000-00-00 00:00:00', 'CANCHAS INFONAVIT PLAYAS', 'EXHIBICION', NULL, 'DEFAULT', 0, 0, 1, 1, 4);
+INSERT INTO `calendarios` (`idcalendarios`, `fk_equipo_local`, `fk_equipo_visitante`, `fecha_hora`, `sede`, `tipo_juego`, `equipo_ganador`, `razon_ganador`, `marcador_visitante`, `marcador_local`, `fk_rol`, `jornada`, `fk_torneo`, `equipo_perdedor`, `fk_grupo`) VALUES
+(1, 3, 4, '0000-00-00 00:00:00', 'CANCHAS INFONAVIT PLAYAS', 'EXHIBICION', 4, 'ANOTACIONES', 10, 5, 1, 1, 4, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -75,7 +76,8 @@ CREATE TABLE `calendario_equipos_jugadores_torneo_jornada` (
 
 INSERT INTO `calendario_equipos_jugadores_torneo_jornada` (`id`, `fk_calendario`, `fk_equipo`, `fk_jugador`, `fk_torneo`, `jornada`, `triples`, `dobles`, `faltas`) VALUES
 (1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 1, 4, 2, 4, 1, 10, 10, 10);
+(3, 1, 4, 2, 4, 1, 10, 10, 10),
+(4, 1, 4, 2, 4, 1, 10, 10, 10);
 
 -- --------------------------------------------------------
 
@@ -85,8 +87,8 @@ INSERT INTO `calendario_equipos_jugadores_torneo_jornada` (`id`, `fk_calendario`
 
 CREATE TABLE `encuentros` (
   `idencuentros` int(11) NOT NULL,
-  `fk_equipo_local` int(11) DEFAULT NULL,
-  `fk_equipo_visitante` int(11) DEFAULT NULL,
+  `equipo1` int(11) DEFAULT NULL,
+  `equipo2` int(11) DEFAULT NULL,
   `cantidad_juegos` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -105,19 +107,20 @@ CREATE TABLE `equipos` (
   `logo` varchar(300) DEFAULT NULL,
   `fk_torneo` int(11) DEFAULT NULL,
   `juegos_ganados` int(11) DEFAULT NULL,
-  `juegos_perdidos` int(11) DEFAULT NULL,
-  `puntos_a_favor` double DEFAULT NULL,
-  `puntos_en_contra` double DEFAULT NULL,
-  `partidos_perdidos_default` int(11) DEFAULT NULL
+  `juegos_perdidos` int(11) DEFAULT 0,
+  `puntos_a_favor` double DEFAULT 0,
+  `puntos_en_contra` double DEFAULT 0,
+  `partidos_perdidos_default` int(11) DEFAULT 0,
+  `puntaje` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `equipos`
 --
 
-INSERT INTO `equipos` (`idequipos`, `nombre`, `nombre_capitan`, `correo_capitan`, `telefono_capitan`, `logo`, `fk_torneo`, `juegos_ganados`, `juegos_perdidos`, `puntos_a_favor`, `puntos_en_contra`, `partidos_perdidos_default`) VALUES
-(3, 'Golden State Warriors', 'Stephen Curry', 'stephencurry@gmail.com', 654565162, '../../img/equipos/659e35c6d8d86_Golden_State_Warriors_logo.svg.png', 4, NULL, NULL, NULL, NULL, NULL),
-(4, 'Los Angeles Lakers', 'Lebron James', 'lebronjames@gmail.com', 654165515, '../../img/equipos/659f6f877079d_98fa13af68e08dac6d7d952f0cfd5c7b.jpg', 4, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `equipos` (`idequipos`, `nombre`, `nombre_capitan`, `correo_capitan`, `telefono_capitan`, `logo`, `fk_torneo`, `juegos_ganados`, `juegos_perdidos`, `puntos_a_favor`, `puntos_en_contra`, `partidos_perdidos_default`, `puntaje`) VALUES
+(3, 'Golden State Warriors', 'Stephen Curry', 'stephencurry@gmail.com', 654565162, '../../img/equipos/659e35c6d8d86_Golden_State_Warriors_logo.svg.png', 4, 0, 1, 5, 10, 0, 1),
+(4, 'Los Angeles Lakers', 'Lebron James', 'lebronjames@gmail.com', 654165515, '../../img/equipos/659f6f877079d_98fa13af68e08dac6d7d952f0cfd5c7b.jpg', 4, 1, 0, 10, 5, 0, 2);
 
 -- --------------------------------------------------------
 
@@ -170,7 +173,7 @@ CREATE TABLE `jugadores` (
 
 INSERT INTO `jugadores` (`idjugadores`, `nombre`, `apellido1`, `apellido2`, `fecha_nac`, `correo`, `celular`, `tipo_sangre`, `contacto_emergencia`, `fotografia`, `fk_equipo`, `fk_usuario`, `triples`, `dobles`, `faltas`, `posicion`) VALUES
 (1, 'Valeria', 'Sanchez', 'Velazquez', '0000-00-00', 'asdf@gmail.com', '32323423', 'O+', NULL, '../../img/jugadores/659f6b496d8c6_curry.png', 3, 6, 0, 0, 0, 'Ala'),
-(2, 'Raton', 'Paton', 'Paton', '2024-01-10', 'asdf@gmail.com', '1234512345', 'O+', NULL, '../../img/jugadores/659f6ff3242c4_lebron.png', 4, 7, 0, 0, 0, 'Ala-pivot'),
+(2, 'Raton', 'Paton', 'Paton', '2024-01-10', 'asdf@gmail.com', '1234512345', 'O+', NULL, '../../img/jugadores/659f6ff3242c4_lebron.png', 4, 7, 10, 10, 10, 'Ala-pivot'),
 (3, 'Prueba', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 8, 0, 0, 0, NULL);
 
 -- --------------------------------------------------------
@@ -395,7 +398,7 @@ ALTER TABLE `calendarios`
 -- AUTO_INCREMENT de la tabla `calendario_equipos_jugadores_torneo_jornada`
 --
 ALTER TABLE `calendario_equipos_jugadores_torneo_jornada`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos`

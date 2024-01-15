@@ -57,27 +57,35 @@
                     id="tipo_juego">
                 </div>
                 <div class="mb-3">
-                    <label for="equipo" class="form-label">EQUIPO GANADOR:</label><br>
-                    <select name="equipo" id="equipo" class="form-control">
+                    <label for="equipo_ganador" class="form-label">EQUIPO GANADOR:</label><br>
+                    <select name="equipo_ganador" id="equipo_ganador" class="form-control">
                         <?php foreach($equipos as $equipo){ ?>
                             <option value="<?php echo $equipo['idequipos'] ?>" <?php if($equipo['idequipos'] == $rows[0]['equipo_ganador']){ echo 'selected';} ?>> <?php echo $equipo['nombre'] ?> </option>
                     <?php } ?>
                     </select>
                 </div>
                 <div class="mb-3">
+                    <label for="equipo_perdedor" class="form-label">EQUIPO PERDEDOR:</label><br>
+                    <select name="equipo_perdedor" id="equipo_perdedor" class="form-control">
+                        <?php foreach($equipos as $equipo){ ?>
+                            <option value="<?php echo $equipo['idequipos'] ?>" <?php if($equipo['idequipos'] == $rows[0]['equipo_perdedor']){ echo 'selected';} ?>> <?php echo $equipo['nombre'] ?> </option>
+                    <?php } ?>
+                    </select>
+                </div>
+                <div class="mb-3">
                     <label for="razon_ganador" class="form-label">RAZON DEL GANADOR:</label>
                     <select name="razon_ganador" id="razon_ganador" class="form-control">
-                        <option value="DEFAULT">DEFAULT</option>
                         <option value="ANOTACIONES">ANOTACIONES</option>
+                        <option value="DEFAULT">DEFAULT</option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="marcador_visitante" class="form-label">MARCADOR DEL VISITANTE:</label>
-                    <input type="number" name="marcador_visitante" id="marcador_visitante" class="form-control">
+                    <input type="number" name="marcador_visitante" id="marcador_visitante" class="form-control" value="<?php echo $rows[0]['marcador_visitante'] ?>" >
                 </div>
                 <div class="mb-3">
                     <label for="marcador_local" class="form-label">MARCADOR DEL LOCAL:</label>
-                    <input type="number" name="marcador_local" id="marcador_local" class="form-control">
+                    <input type="number" name="marcador_local" id="marcador_local" class="form-control" value="<?php echo $rows[0]['marcador_local'] ?>" >
                 </div>
                 <div class="mb-3">
                     <label for="jornada" class="form-label">JORNADA:</label>

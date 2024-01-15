@@ -36,12 +36,56 @@
             }
 
             public function update($id, $equipo_visitante, $equipo_local, $fecha_hora, $sede, $tipo_juego, 
-            $equipo_ganador, $razon_ganador, $marcador_visitante, $marcador_local, $jornada){
+            $equipo_ganador, $razon_ganador, $marcador_visitante, $marcador_local, $jornada, $equipo_perdedor){
                 $this->PDO->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
+                if($razon_ganador == 'ANOTACIONES'){
+                    $puntaje = 1;
+                }
+                
+                if($razon_ganador == 'DEFAULT'){
+                    $puntaje = 0;
+                }
+
+                $sqlUpdateEquipoGanador = 'UPDATE equipos SET puntos_a_favor = puntos_a_favor + :puntos_a_favor, puntos_en_contra = puntos_en_contra + :puntos_en_contra, 
+                puntaje = puntaje + 2, juegos_ganados = juegos_ganados + 1
+                WHERE idequipos = :equipo_ganador';
+                $stmt = $this->PDO->prepare($sqlUpdateEquipoGanador);
+                if($equipo_ganador == $equipo_local){
+                    $stmt->bindParam(':puntos_a_favor', $marcador_local);
+                    $stmt->bindParam(':puntos_en_contra', $marcador_visitante);
+                }else{
+                    $stmt->bindParam(':puntos_a_favor', $marcador_visitante);
+                    $stmt->bindParam(':puntos_en_contra', $marcador_local);
+                }
+                $stmt->bindParam(':equipo_ganador', $equipo_ganador);
+                $stmt->execute();
+
+                $sqlUpdateEquipoPerdedor = 'UPDATE equipos SET puntos_a_favor = puntos_a_favor + :puntos_a_favor, puntos_en_contra = puntos_en_contra + :puntos_en_contra, 
+                puntaje = puntaje + :puntaje, juegos_perdidos = juegos_perdidos + 1, partidos_perdidos_default = partidos_perdidos_default + :partidos_perdidos_default
+                WHERE idequipos = :equipo_perdedor';
+                $stmt = $this->PDO->prepare($sqlUpdateEquipoPerdedor);
+               if ($equipo_ganador == $equipo_local) {
+                    $stmt->bindValue(':puntos_en_contra', $marcador_local, PDO::PARAM_INT);
+                    $stmt->bindValue(':puntos_a_favor', $marcador_visitante, PDO::PARAM_INT);
+                } else {
+                    $stmt->bindValue(':puntos_a_favor', $marcador_local, PDO::PARAM_INT);
+                    $stmt->bindValue(':puntos_en_contra', $marcador_visitante, PDO::PARAM_INT);
+                }
+
+                $stmt->bindParam(':puntaje', $puntaje, PDO::PARAM_INT);
+
+                if ($razon_ganador == 'DEFAULT') {
+                    $stmt->bindValue(':partidos_perdidos_default', 1, PDO::PARAM_INT);
+                } else {
+                    $stmt->bindValue(':partidos_perdidos_default', 0, PDO::PARAM_INT);
+                }
+                $stmt->bindParam(':equipo_perdedor', $equipo_perdedor);
+                $stmt->execute();
+
                 $sql = 'UPDATE calendarios SET fk_equipo_visitante = :equipo_visitante, fk_equipo_local = :equipo_local,
                 fecha_hora = :fecha_hora,sede = :sede,tipo_juego = :tipo_juego, equipo_ganador = :equipo_ganador,
                 razon_ganador = :razon_ganador,marcador_visitante = :marcador_visitante, marcador_local = :marcador_local,
-                jornada = :jornada
+                jornada = :jornada, equipo_perdedor = :equipo_perdedor
                 WHERE idcalendarios = :id';
                 $statement = $this->PDO->prepare($sql);
                 //Asociamos los valores colocados como placeholder en el query mediante el bindParam()
@@ -51,6 +95,7 @@
                 $statement->bindParam(":sede", $sede);
                 $statement->bindParam(":tipo_juego", $tipo_juego);
                 $statement->bindParam(":equipo_ganador", $equipo_ganador);
+                $statement->bindParam(":equipo_perdedor", $equipo_perdedor);
                 $statement->bindParam(":razon_ganador", $razon_ganador);
                 $statement->bindParam(":marcador_visitante", $marcador_visitante);
                 $statement->bindParam(":marcador_local", $marcador_local);
@@ -199,22 +244,14 @@
             public function insertResultados($jugador, $torneo, $equipo, $calendario, $jornada, $triples, $dobles, $faltas){
                 $this->PDO->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
                     //$sql = 'INSERT INTO equipos VALUES(null, :nombre, :nombre_capitan, :correo_capitan, :telefono_capitan, :logo, :torneo)';
-                    $sql = 'UPDATE jugadores SET triples = triples + :triples, dobles = +:dobles, faltas + :faltas WHERE idjugadores = '.$jugador;
+                    $sql = 'UPDATE jugadores SET triples = triples + :triples, dobles = dobles +:dobles, faltas = faltas + :faltas WHERE idjugadores = :jugador';
                     //iniciamos declarando el statement y preparando la consulta
                     $statement = $this->PDO->prepare($sql);
                     //Asociamos los valores colocados como placeholder en el query mediante el bindParam()
                     $statement->bindParam(":triples", $triples, PDO::PARAM_INT);
                     $statement->bindParam(":dobles", $dobles, PDO::PARAM_INT);
                     $statement->bindParam(":faltas", $faltas, PDO::PARAM_INT);
-                    $statement->execute();
-
-                    $suma = $triples + $dobles;
-
-                    $sql = 'UPDATE equipos SET puntos_a_favor = puntos_a_favor + :suma WHERE idequipos ='.$equipo;
-                    //iniciamos declarando el statement y preparando la consulta
-                    $statement = $this->PDO->prepare($sql);
-                    //Asociamos los valores colocados como placeholder en el query mediante el bindParam()
-                    $statement->bindParam(":suma", $suma, PDO::PARAM_INT);
+                    $statement->bindParam(":jugador", $jugador, PDO::PARAM_INT);
                     $statement->execute();
 
                     $sql = 'INSERT INTO calendario_equipos_jugadores_torneo_jornada (id, fk_calendario, fk_equipo, fk_jugador, fk_torneo, jornada, triples, dobles, faltas) 

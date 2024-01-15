@@ -53,5 +53,13 @@
             return ($this->model->readTeamsPlayers($id, $calendario) != false) ? $this->model->readTeamsPlayers($id, $calendario) : die('No se encontró el equipo');
         }
 
+        public function readStandingGeneral($torneo){
+            return ($this->model->readStandingGeneral($torneo) != false) ? $this->model->readStandingGeneral($torneo) : die('No se encontró el torneo');
+        }
+
+        public function readStandingEquipos($torneo, $grupo){
+            return ($this->model->readStandingEquipos($torneo, $grupo) != false) ? $this->model->readStandingEquipos($torneo, $grupo) : die('No se encontró el torneo');
+        }
+
     }
 ?>

@@ -14,6 +14,11 @@
         public function readByName($name){
             return ($this->model->readByName($name) != false) ? $this->model->readByName($name) : die('No se encontró el jugador');
         }
+
+        public function readByTorneo($torneo){
+            return ($this->model->readByTorneo($torneo) != false) ? $this->model->readByTorneo($torneo) : die('No se encontraron jugadores');
+        }
+
         public function update($id,$nombre,$apellido1,$apellido2,$fechanac,$correo, $celular, $tipo_sangre,$fotografia, $equipo, $posicion){
              // Ruta donde se almacenará la imagen en el servidor
              $uploadDir = '../../img/jugadores/';

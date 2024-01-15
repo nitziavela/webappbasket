@@ -1,17 +1,20 @@
 <?php
+	//Permitir acceso a todos
 	header("Access-Control-Allow-Origin: *");
+	//Decir que tu aplicacion contiene informacion en formato json con un charset utf-8
 	header("Content-Type: application/json: charset=UTF-8");
+	//Permitir solo el metodo POST
 	header("Access-Control-Allow-Methods:_ POST");
+	//El tiempo que caduca en segundos
 	header("Access-Control-Max-Age: 3600");
+	//Permitir los headers que anteriormente se crearon y otros para autorizaciones del navegador
 	header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 	require_once ('../../config/DataBase.php');
     require_once ('../../controllers/jugadoresController.php');
 
-	$objBaseDatos = new Database();
     $objJugadoresController = new jugadoresController();
 
-	$db = $objBaseDatos->connect();
 	$jugador = $objJugadoresController->readOne($_GET['id']);
     if($jugador){
 		// Crear arreglo con los valores

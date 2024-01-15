@@ -34,14 +34,43 @@
             }
 
             public function readTeamsPlayers($equipo, $calendario){
-                $statement = $this->PDO->prepare("SELECT teams.*, torneo.nombre as nombre_torneo, players.*, cejtj.triples as triples_jg, cejtj.dobles as dobles_jg, cejtj.faltas as faltas_jg, torneo.idtorneos as idtorneo FROM equipos teams
+                $statement = $this->PDO->prepare("SELECT teams.*, torneo.nombre as nombre_torneo, players.*, COALESCE(cejtj.triples, 0) as triples_jg, COALESCE(cejtj.dobles, 0) as dobles_jg, COALESCE(cejtj.faltas, 0) as faltas_jg, torneo.idtorneos as idtorneo FROM equipos teams
                 LEFT JOIN jugadores players ON players.fk_equipo = teams.idequipos
                 LEFT JOIN torneos torneo ON torneo.idtorneos = teams.fk_torneo
                 LEFT JOIN calendarios calendar ON calendar.fk_torneo = torneo.idtorneos
-                LEFT JOIN calendario_equipos_jugadores_torneo_jornada cejtj ON cejtj.fk_calendario = calendar.idcalendarios
+                LEFT JOIN calendario_equipos_jugadores_torneo_jornada cejtj ON cejtj.fk_jugador = players.idjugadores
                 WHERE teams.idequipos = :id
                 GROUP by players.idjugadores");
                 $statement->bindParam(":id", $equipo);
+                return ($statement->execute()) ? $statement->fetchAll() : false;
+            }
+
+            public function readStandingGeneral($torneo){
+                $statement = $this->PDO->prepare("SELECT teams.*, SUM(teams.puntos_a_favor - teams.puntos_en_contra) as diferencia, 
+                SUM(teams.juegos_ganados + teams.juegos_perdidos) as juegos_jugados
+                FROM equipos teams
+                LEFT JOIN torneos torneo ON torneo.idtorneos = teams.fk_torneo
+                WHERE torneo.idtorneos = :torneo
+                GROUP BY teams.idequipos");
+                $statement->bindParam(':torneo', $torneo);
+                return ($statement->execute()) ? $statement->fetchAll() : false;
+            }
+
+            public function readStandingEquipos($torneo, $grupo){
+                if($grupo){
+                    $filtrarGrupo = ' AND grupo.idgrupos = '.$grupo;
+                }else{
+                    $filtrarGrupo = '';
+                }
+                $statement = $this->PDO->prepare("SELECT teams.*, SUM(teams.puntos_a_favor - teams.puntos_en_contra) as diferencia, 
+                SUM(teams.juegos_ganados + teams.juegos_perdidos) as juegos_jugados
+                FROM equipos teams
+                LEFT JOIN torneos torneo ON torneo.idtorneos = teams.fk_torneo
+                LEFT JOIN calendarios calendario ON calendario.fk_torneo = torneo.idtorneos
+                LEFT JOIN grupos grupo ON grupo.idgrupos = calendario.fk_grupo
+                WHERE torneo.idtorneos = :torneo ".$filtrarGrupo."
+                GROUP BY teams.idequipos");
+                $statement->bindParam(':torneo', $torneo);
                 return ($statement->execute()) ? $statement->fetchAll() : false;
             }
 

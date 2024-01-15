@@ -31,9 +31,9 @@
         }
 
         public function update($id, $equipo_visitante, $equipo_local, $fecha_hora, $sede, $tipo_juego, 
-        $equipo_ganador, $razon_ganador, $marcador_visitante, $marcador_local, $jornada){
+        $equipo_ganador, $razon_ganador, $marcador_visitante, $marcador_local, $jornada, $equipo_perdedor){
             return ($this->model->update($id, $equipo_visitante, $equipo_local, $fecha_hora, $sede, $tipo_juego, 
-            $equipo_ganador, $razon_ganador, $marcador_visitante, $marcador_local, $jornada)) != false ? header("Location: consultarCalendarios.php") : die('Error al modificar el calendario');
+            $equipo_ganador, $razon_ganador, $marcador_visitante, $marcador_local, $jornada, $equipo_perdedor)) != false ? header("Location: consultarCalendarios.php") : die('Error al modificar el calendario');
         }
 
         public function updateRol($id, $jornadas, $torneo){
