@@ -1,10 +1,36 @@
 <?php
+
+use Com\Tecnick\Pdf\Tcpdf;
+
     require_once("../admin/template/header.php");
     require_once("../../controllers/calendarioController.php");
+    require_once('../../fpdf/fpdf.php'); // Incluir la biblioteca FPDF 
     //instanciamos controlador para ejecutar la consulta
     $objcalendariosController = new calendarioController();
     //Capturamos los regristros de la tabal en "filas"
     $rows = $objcalendariosController->read();
+    ob_start();
+    if (isset($_GET['action']) && $_GET['action'] == 'imprimir') {
+        // Si se solicita imprimir, generar el PDF
+        $pdf = new FPDF();
+        $pdf->AddPage();
+     // Configurar la fuente
+     $pdf->SetFont('Arial', '', 12);
+        foreach ($rows as $row) {
+            // Agregar contenido al PDF según tus necesidades
+            $pdf->Cell(0, 10, 'Equipo Local: ' . $row['equipo_local'], 0, 1);
+            $pdf->Cell(0, 10, 'Equipo Visitante: ' . $row['equipo_visitante'], 0, 1);
+            $pdf->Cell(0, 10, 'Fecha: ' . $row['fecha_hora'], 0, 1);
+            $pdf->Cell(0, 10, 'Sede: ' . $row['sede'], 0, 1);
+            $pdf->Cell(0, 10, 'Tipo de Juego: ' . $row['tipo_juego'], 0, 1);
+            // ... Agregar más contenido según sea necesario ...
+            $pdf->Cell(0, 10, '--------------------------------------', 0, 1);
+        }
+    
+        // Salida del PDF
+        $pdf->Output('calendario.pdf', 'D');
+    }
+    ob_end_flush()
 ?>
 <head>
 <link href="../admin/template/template.css" rel="stylesheet">
@@ -65,7 +91,7 @@
                         </div>
             <div class="mx-auto p-2">
                 <a href="consultarCalendario.php?id=<?= $row['idcalendarios'] ?>" class="btn btn-primary" title="Consultar Calendario"><span class="fa solid fa-list-check"></span></a>
-                <?php // if($row['equipo_ganador'] == NULL){ ?>
+                <?php if($row['equipo_ganador'] == NULL){ ?>
                 <a href="updateCalendario.php?id=<?= $row['idcalendarios'] ?>" class="btn btn-success" title="Modificar Calendario"><span class="fa solid fa-pen-to-square"></span></a>
                 <!--Eliminar registro utilizando usando Ventana Modal -->
                 <!-- Button trigger modal -->
@@ -89,10 +115,11 @@
                     </div>
                 </div>
                 <a href="capturarResultados.php?idcalendario=<?= $row['idcalendarios'] ?>&equipo_local=<?= $row['fk_equipo_local'] ?>&equipo_visitante=<?= $row['fk_equipo_visitante'] ?>&idtorneo=<?= $row['fk_torneo'] ?>&jornada=<?= $row['jornada'] ?>" class="btn btn-warning" title="Capturar Resultados"><span class="fa solid fa-clipboard-list"></span></a>
-                <?php// } ?> 
+                <?php } ?> 
             </div>
             <?php } ?> 
         </div>
         <a href="../../index.php" class="btn btn-primary"></span>Regresar</a>
+        <a href="?action=imprimir" class="btn btn-primary">Imprimir</a>
     </div>
 </body>
