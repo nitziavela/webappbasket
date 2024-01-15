@@ -91,6 +91,7 @@
             }
             public function update($id, $nombreTorneo, $sede, $categoria, 
             $premio1, $premio2, $premio3, $otroPremio){
+                print_r($nombreTorneo);exit;
                 $statement = $this->PDO->prepare("UPDATE torneos SET nombre = :nombreTorneo,
                 fk_organizador = :organizador, sede = :sede, premio1 = :premio1, premio2 = :premio2, premio3 = :premio3,
                 premio_otro = :otroPremio, categoria = :categoria, WHERE idtorneos = :id ");

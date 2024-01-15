@@ -20,9 +20,9 @@
         <div class="card-body">
             <form action="torneoUpdate.php" method="post">
                 <div class="mb-3">
-                    <label for="nombreTorneo" class="form-label">ID DEL TORNEO</label>
-                    <input type="text" class="form-control" name="txtId" 
-                    id="nombreTorneo" value="<?= $lstTorneo['idtorneos'] ?>" >
+                    <label for="idTorneo" class="form-label">ID DEL TORNEO</label>
+                    <input type="text" class="form-control" name="idtorneo" 
+                    id="idtorneo" value="<?= $lstTorneo['idtorneos'] ?>" >
                 </div>
                 <div class="mb-3">
                     <label for="nombreTorneo" class="form-label">NOMBRE DEL TORNEO (ID: <?= $lstTorneo['idtorneos'] ?>)</label>
